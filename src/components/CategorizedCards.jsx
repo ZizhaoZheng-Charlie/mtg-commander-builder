@@ -1,7 +1,13 @@
 import { useMemo, useState, useEffect } from 'react';
 import CardCarousel from './CardCarousel';
 
-function CategorizedCards({ edhrecData, onAddToDeck, onCardClick, activeCategory, onCategoryChange }) {
+function CategorizedCards({
+  edhrecData,
+  onAddToDeck,
+  onCardClick,
+  activeCategory,
+  onCategoryChange,
+}) {
   const categorizedCards = useMemo(() => {
     if (!edhrecData?.container?.json_dict?.cardlists) {
       return [];
@@ -14,14 +20,14 @@ function CategorizedCards({ edhrecData, onAddToDeck, onCardClick, activeCategory
       'swamp',
       'mountain',
       'forest',
-      'wastes'
+      'wastes',
     ];
 
     // Categories to skip (already displayed separately)
     const skipCategories = [
       'high synergy cards',
       'top cards',
-      'signature cards'
+      'signature cards',
     ];
 
     return edhrecData.container.json_dict.cardlists
@@ -57,7 +63,6 @@ function CategorizedCards({ edhrecData, onAddToDeck, onCardClick, activeCategory
     return null;
   }
 
-
   const getCategoryId = header => {
     return header
       .toLowerCase()
@@ -91,7 +96,7 @@ function CategorizedCards({ edhrecData, onAddToDeck, onCardClick, activeCategory
         <div className="flex flex-wrap gap-2">
           {categorizedCards.map((category, index) => {
             const tabId = getCategoryId(category.header);
-            
+
             return (
               <button
                 key={tabId}
@@ -103,7 +108,9 @@ function CategorizedCards({ edhrecData, onAddToDeck, onCardClick, activeCategory
                 }`}
               >
                 <span>{category.header}</span>
-                <span className="text-xs opacity-75">({category.cards.length})</span>
+                <span className="text-xs opacity-75">
+                  ({category.cards.length})
+                </span>
               </button>
             );
           })}
@@ -125,4 +132,3 @@ function CategorizedCards({ edhrecData, onAddToDeck, onCardClick, activeCategory
 }
 
 export default CategorizedCards;
-

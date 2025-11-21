@@ -87,36 +87,36 @@ export const manaSymbolAssets = {
   r: R,
   g: G,
   c: C,
-  
+
   // Special
   t: T,
   tap: T,
   x: X,
   s: S,
-  
+
   // Numbers
-  '0': Mana0,
-  '1': Mana1,
-  '2': Mana2,
-  '3': Mana3,
-  '4': Mana4,
-  '5': Mana5,
-  '6': Mana6,
-  '7': Mana7,
-  '8': Mana8,
-  '9': Mana9,
-  '10': Mana10,
-  '11': Mana11,
-  '12': Mana12,
-  '13': Mana13,
-  '14': Mana14,
-  '15': Mana15,
-  '16': Mana16,
-  '17': Mana17,
-  '18': Mana18,
-  '19': Mana19,
-  '20': Mana20,
-  
+  0: Mana0,
+  1: Mana1,
+  2: Mana2,
+  3: Mana3,
+  4: Mana4,
+  5: Mana5,
+  6: Mana6,
+  7: Mana7,
+  8: Mana8,
+  9: Mana9,
+  10: Mana10,
+  11: Mana11,
+  12: Mana12,
+  13: Mana13,
+  14: Mana14,
+  15: Mana15,
+  16: Mana16,
+  17: Mana17,
+  18: Mana18,
+  19: Mana19,
+  20: Mana20,
+
   // Hybrid color/color
   bg: BG,
   gb: BG,
@@ -136,7 +136,7 @@ export const manaSymbolAssets = {
   bw: WB,
   wu: WU,
   uw: WU,
-  
+
   // Colorless hybrids
   cb: CB,
   bc: CB,
@@ -148,19 +148,19 @@ export const manaSymbolAssets = {
   uc: CU,
   cw: CW,
   wc: CW,
-  
+
   // 2-cost hybrids
   '2b': Mana2B,
-  'b2': Mana2B,
+  b2: Mana2B,
   '2g': Mana2G,
-  'g2': Mana2G,
+  g2: Mana2G,
   '2r': Mana2R,
-  'r2': Mana2R,
+  r2: Mana2R,
   '2u': Mana2U,
-  'u2': Mana2U,
+  u2: Mana2U,
   '2w': Mana2W,
-  'w2': Mana2W,
-  
+  w2: Mana2W,
+
   // Phyrexian
   bp: BP,
   pb: BP,
@@ -172,7 +172,7 @@ export const manaSymbolAssets = {
   pu: UP,
   wp: WP,
   pw: WP,
-  
+
   // Phyrexian hybrids
   bgp: BGP,
   gbp: BGP,
@@ -204,4 +204,3 @@ export const manaSymbolAssets = {
 export function getManaSymbolAsset(symbolKey) {
   return manaSymbolAssets[symbolKey.toLowerCase()] || null;
 }
-

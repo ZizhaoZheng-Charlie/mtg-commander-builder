@@ -1,7 +1,14 @@
 import { useRef, useState } from 'react';
 import { cardLibrary } from '../utils/cardLibrary';
 
-function CardCarousel({ title, icon, cards, onAddToDeck, onCardClick, showCount = true }) {
+function CardCarousel({
+  title,
+  icon,
+  cards,
+  onAddToDeck,
+  onCardClick,
+  showCount = true,
+}) {
   const scrollContainerRef = useRef(null);
   const [hoveredCard, setHoveredCard] = useState(null);
   const [hoveredCardData, setHoveredCardData] = useState(null);
@@ -13,7 +20,7 @@ function CardCarousel({ title, icon, cards, onAddToDeck, onCardClick, showCount 
       const newScrollLeft =
         scrollContainerRef.current.scrollLeft +
         (direction === 'left' ? -scrollAmount : scrollAmount);
-      
+
       scrollContainerRef.current.scrollTo({
         left: newScrollLeft,
         behavior: 'smooth',
@@ -38,7 +45,7 @@ function CardCarousel({ title, icon, cards, onAddToDeck, onCardClick, showCount 
               </p>
             )}
           </div>
-          
+
           <div className="flex gap-2">
             <button
               onClick={() => scroll('left')}
@@ -83,8 +90,9 @@ function CardCarousel({ title, icon, cards, onAddToDeck, onCardClick, showCount 
                 if (cardLibrary.isLoaded && card.name) {
                   const cards = cardLibrary.lexicalSearch(card.name, 5);
                   const foundCard =
-                    cards.find(c => c.name.toLowerCase() === card.name.toLowerCase()) ||
-                    cards[0];
+                    cards.find(
+                      c => c.name.toLowerCase() === card.name.toLowerCase()
+                    ) || cards[0];
                   if (foundCard) {
                     setHoveredCardData(foundCard);
                   } else {
@@ -99,7 +107,10 @@ function CardCarousel({ title, icon, cards, onAddToDeck, onCardClick, showCount 
                 setHoveredCardData(null);
               }}
               onMouseMove={(card, e) => {
-                if (hoveredCard && (hoveredCard.id === card.id || hoveredCard.name === card.name)) {
+                if (
+                  hoveredCard &&
+                  (hoveredCard.id === card.id || hoveredCard.name === card.name)
+                ) {
                   const rect = e.currentTarget.getBoundingClientRect();
                   setHoverPosition({
                     x: rect.left + rect.width / 2,
@@ -117,7 +128,8 @@ function CardCarousel({ title, icon, cards, onAddToDeck, onCardClick, showCount 
       </div>
 
       {/* Hover Card Image Tooltip */}
-      {hoveredCard && hoveredCardData &&
+      {hoveredCard &&
+        hoveredCardData &&
         (() => {
           const hoveredImageUri =
             hoveredCardData.image_uris?.normal ||
@@ -170,7 +182,15 @@ function CardCarousel({ title, icon, cards, onAddToDeck, onCardClick, showCount 
   );
 }
 
-function CardItem({ card, onCardClick, onAddToDeck, onMouseEnter, onMouseLeave, onMouseMove, onButtonHover }) {
+function CardItem({
+  card,
+  onCardClick,
+  onAddToDeck,
+  onMouseEnter,
+  onMouseLeave,
+  onMouseMove,
+  onButtonHover,
+}) {
   const synergyPercentage = card.synergy
     ? Math.round(card.synergy * 100)
     : null;
@@ -204,7 +224,7 @@ function CardItem({ card, onCardClick, onAddToDeck, onMouseEnter, onMouseLeave, 
         <h3 className="text-base font-bold text-white line-clamp-2 min-h-[3rem]">
           {card.name}
         </h3>
-        
+
         <div className="flex flex-col gap-2">
           {synergyPercentage !== null && synergyPercentage > 0 && (
             <div className="flex items-center gap-2">
@@ -238,4 +258,3 @@ function CardItem({ card, onCardClick, onAddToDeck, onMouseEnter, onMouseLeave, 
 }
 
 export default CardCarousel;
-

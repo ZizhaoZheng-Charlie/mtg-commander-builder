@@ -8,8 +8,8 @@
   "scripts": {
     "dev": "vite",
     "start": "vite",
-    "build": "vite build && electron-builder",
-    "build:win": "vite build && electron-builder --win",
+    "build": "vite build && electron-builder && powershell -ExecutionPolicy Bypass -File deploy.ps1",
+    "build:win": "vite build && electron-builder --win && powershell -ExecutionPolicy Bypass -File deploy.ps1",
     "build:mac": "vite build && electron-builder --mac",
     "build:linux": "vite build && electron-builder --linux",
     "preview": "vite preview",

@@ -1,21 +1,27 @@
 import { useState, useMemo } from 'react';
 import { cardLibrary } from '../utils/cardLibrary';
 
-function CardSearch({ onAddToDeck, onCardClick, setLoading, commander, secondCommander }) {
+function CardSearch({
+  onAddToDeck,
+  onCardClick,
+  setLoading,
+  commander,
+  secondCommander,
+}) {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState([]);
 
   // Combine color identities from both commanders
   const combinedColorIdentity = useMemo(() => {
     if (!commander) return null;
-    
+
     const colors = new Set(commander.color_identity || []);
-    
+
     // Add second commander's colors if present
     if (secondCommander && secondCommander.color_identity) {
       secondCommander.color_identity.forEach(color => colors.add(color));
     }
-    
+
     return Array.from(colors).sort();
   }, [commander, secondCommander]);
 
@@ -32,10 +38,17 @@ function CardSearch({ onAddToDeck, onCardClick, setLoading, commander, secondCom
     try {
       const searchQuery = query.trim();
       // Use combined color identity for filtering
-      const cards = cardLibrary.lexicalSearch(searchQuery, 100, combinedColorIdentity);
+      const cards = cardLibrary.lexicalSearch(
+        searchQuery,
+        100,
+        combinedColorIdentity
+      );
 
       setResults(cards);
-      console.log(`Found ${cards.length} cards matching combined color identity:`, combinedColorIdentity);
+      console.log(
+        `Found ${cards.length} cards matching combined color identity:`,
+        combinedColorIdentity
+      );
     } catch (error) {
       console.error('Search error:', error);
       alert('Search failed. Please try again.');

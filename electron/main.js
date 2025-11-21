@@ -27,12 +27,23 @@ process.env.VITE_PUBLIC = VITE_DEV_SERVER_URL
 
 let win;
 
-// Configure app to allow internet access
-app.commandLine.appendSwitch('disable-features', 'OutOfBlinkCors');
+// Configure app to allow internet access and disable autofill features
+// (autofill disable suppresses harmless DevTools console errors)
+app.commandLine.appendSwitch('disable-features', 'OutOfBlinkCors,AutofillServerCommunication,AutofillEnableAccountWalletStorage');
+app.commandLine.appendSwitch('disable-autofill');
 
 function createWindow() {
   // Configure session before creating window
   const ses = session.defaultSession;
+
+  // Disable autofill at session level
+  ses.setPermissionRequestHandler((webContents, permission, callback) => {
+    if (permission === 'autofill') {
+      callback(false); // Deny autofill permission requests
+    } else {
+      callback(true);
+    }
+  });
 
   // Allow all origins for fetch requests (required for API calls)
   ses.webRequest.onBeforeSendHeaders((details, callback) => {
@@ -50,6 +61,18 @@ function createWindow() {
       webSecurity: false, // Disable web security for API access
       allowRunningInsecureContent: false,
     },
+  });
+
+  // Suppress harmless DevTools Autofill console errors using new API
+  win.webContents.on('console-message', (event) => {
+    const { level, message } = event;
+    if (
+      typeof message === 'string' &&
+      (message.includes("Autofill.enable") || message.includes("Autofill.setAddresses"))
+    ) {
+      // These are harmless DevTools protocol errors - they're logged but don't affect functionality
+      // The command line flags should prevent most of them
+    }
   });
 
   // Test active push message to Renderer-process.

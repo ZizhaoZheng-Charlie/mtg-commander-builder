@@ -15,7 +15,7 @@ function TopCards({ cards, onAddToDeck, onCardClick }) {
       const newScrollLeft =
         scrollContainerRef.current.scrollLeft +
         (direction === 'left' ? -scrollAmount : scrollAmount);
-      
+
       scrollContainerRef.current.scrollTo({
         left: newScrollLeft,
         behavior: 'smooth',
@@ -87,7 +87,7 @@ function TopCards({ cards, onAddToDeck, onCardClick }) {
               {cards.length} most popular cards in this commander deck
             </p>
           </div>
-          
+
           <div className="flex gap-2">
             <button
               onClick={() => scroll('left')}
@@ -128,7 +128,7 @@ function TopCards({ cards, onAddToDeck, onCardClick }) {
                   <h3 className="text-base font-bold text-white line-clamp-2 min-h-[3rem]">
                     {card.name}
                   </h3>
-                  
+
                   <div className="flex flex-col gap-2">
                     {synergyPercentage !== null && synergyPercentage > 0 && (
                       <div className="flex items-center gap-2">
@@ -166,7 +166,8 @@ function TopCards({ cards, onAddToDeck, onCardClick }) {
       </div>
 
       {/* Hover Card Image Tooltip */}
-      {hoveredCard && hoveredCardData &&
+      {hoveredCard &&
+        hoveredCardData &&
         (() => {
           const hoveredImageUri =
             hoveredCardData.image_uris?.normal ||

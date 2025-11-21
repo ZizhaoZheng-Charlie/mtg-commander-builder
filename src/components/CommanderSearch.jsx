@@ -9,9 +9,9 @@ function CommanderSearch({ onCommanderSelect, setLoading }) {
     useState(null);
   const debounceTimerRef = useRef(null);
 
-  const handleSearch = async (searchQuery) => {
+  const handleSearch = async searchQuery => {
     const trimmedQuery = searchQuery?.trim() || query.trim();
-    
+
     if (!trimmedQuery) {
       setResults([]);
       return;

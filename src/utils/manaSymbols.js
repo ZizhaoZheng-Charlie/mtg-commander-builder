@@ -12,51 +12,39 @@ export function parseManaSymbols(manaCost) {
   return (
     manaCost
       // Three-part hybrid mana (e.g., {G/U/P}, {B/R/P}) - convert to lowercase
-      .replace(
-        /\{(\w+)\/(\w+)\/(\w+)\}/gi,
-        (match, first, second, third) => {
-          const symbolKey = `${first.toLowerCase()}${second.toLowerCase()}${third.toLowerCase()}`;
-          const assetUrl = getManaSymbolAsset(symbolKey);
-          const style = assetUrl 
-            ? `background-image: url('${assetUrl}'); background-size: cover; width: 18px; height: 18px; display: inline-block; border-radius: 50%; text-indent: -9999px; overflow: hidden;`
-            : `width: 18px; height: 18px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; background: #ccc; font-size: 8px; font-weight: bold;`;
-          return `<span style="${style}" title="${first}/${second}/${third}">${assetUrl ? '' : `${first}/${second}/${third}`}</span>`;
-        }
-      )
+      .replace(/\{(\w+)\/(\w+)\/(\w+)\}/gi, (match, first, second, third) => {
+        const symbolKey = `${first.toLowerCase()}${second.toLowerCase()}${third.toLowerCase()}`;
+        const assetUrl = getManaSymbolAsset(symbolKey);
+        const style = assetUrl
+          ? `background-image: url('${assetUrl}'); background-size: cover; width: 18px; height: 18px; display: inline-block; border-radius: 50%; text-indent: -9999px; overflow: hidden;`
+          : `width: 18px; height: 18px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; background: #ccc; font-size: 8px; font-weight: bold;`;
+        return `<span style="${style}" title="${first}/${second}/${third}">${assetUrl ? '' : `${first}/${second}/${third}`}</span>`;
+      })
       // Two-part hybrid mana (e.g., {W/U}, {2/W}, {B/R}) - convert to lowercase
-      .replace(
-        /\{(\w+)\/(\w+)\}/gi,
-        (match, first, second) => {
-          const symbolKey = `${first.toLowerCase()}${second.toLowerCase()}`;
-          const assetUrl = getManaSymbolAsset(symbolKey);
-          const style = assetUrl 
-            ? `background-image: url('${assetUrl}'); background-size: cover; width: 18px; height: 18px; display: inline-block; border-radius: 50%; text-indent: -9999px; overflow: hidden;`
-            : `width: 18px; height: 18px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; background: #ccc; font-size: 10px; font-weight: bold;`;
-          return `<span style="${style}" title="${first}/${second}">${assetUrl ? '' : `${first}/${second}`}</span>`;
-        }
-      )
+      .replace(/\{(\w+)\/(\w+)\}/gi, (match, first, second) => {
+        const symbolKey = `${first.toLowerCase()}${second.toLowerCase()}`;
+        const assetUrl = getManaSymbolAsset(symbolKey);
+        const style = assetUrl
+          ? `background-image: url('${assetUrl}'); background-size: cover; width: 18px; height: 18px; display: inline-block; border-radius: 50%; text-indent: -9999px; overflow: hidden;`
+          : `width: 18px; height: 18px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; background: #ccc; font-size: 10px; font-weight: bold;`;
+        return `<span style="${style}" title="${first}/${second}">${assetUrl ? '' : `${first}/${second}`}</span>`;
+      })
       // Snow mana
-      .replace(
-        /\{S\}/gi,
-        () => {
-          const assetUrl = getManaSymbolAsset('s');
-          const style = assetUrl
-            ? `background-image: url('${assetUrl}'); background-size: cover; width: 18px; height: 18px; display: inline-block; border-radius: 50%; text-indent: -9999px; overflow: hidden;`
-            : `width: 18px; height: 18px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; background: #ccc; font-size: 10px;`;
-          return `<span style="${style}" title="Snow">${assetUrl ? '' : 'S'}</span>`;
-        }
-      )
+      .replace(/\{S\}/gi, () => {
+        const assetUrl = getManaSymbolAsset('s');
+        const style = assetUrl
+          ? `background-image: url('${assetUrl}'); background-size: cover; width: 18px; height: 18px; display: inline-block; border-radius: 50%; text-indent: -9999px; overflow: hidden;`
+          : `width: 18px; height: 18px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; background: #ccc; font-size: 10px;`;
+        return `<span style="${style}" title="Snow">${assetUrl ? '' : 'S'}</span>`;
+      })
       // Tap symbol
-      .replace(
-        /\{T\}/gi,
-        () => {
-          const assetUrl = getManaSymbolAsset('t');
-          const style = assetUrl
-            ? `background-image: url('${assetUrl}'); background-size: cover; width: 18px; height: 18px; display: inline-block; border-radius: 50%; text-indent: -9999px; overflow: hidden;`
-            : `width: 18px; height: 18px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; background: #ccc; font-size: 10px;`;
-          return `<span style="${style}" title="Tap">${assetUrl ? '' : '⟳'}</span>`;
-        }
-      )
+      .replace(/\{T\}/gi, () => {
+        const assetUrl = getManaSymbolAsset('t');
+        const style = assetUrl
+          ? `background-image: url('${assetUrl}'); background-size: cover; width: 18px; height: 18px; display: inline-block; border-radius: 50%; text-indent: -9999px; overflow: hidden;`
+          : `width: 18px; height: 18px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; background: #ccc; font-size: 10px;`;
+        return `<span style="${style}" title="Tap">${assetUrl ? '' : '⟳'}</span>`;
+      })
       // Untap symbol
       .replace(
         /\{Q\}/gi,
@@ -75,80 +63,65 @@ export function parseManaSymbols(manaCost) {
           : `width: 18px; height: 18px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; background: linear-gradient(135deg, #cac5c0, #b0aaa5); font-size: 10px; font-weight: bold;`;
         return `<span style="${style}" title="X">${assetUrl ? '' : 'X'}</span>`;
       })
-      .replace(/\{Y\}/gi, '<span style="width: 18px; height: 18px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; background: linear-gradient(135deg, #cac5c0, #b0aaa5); font-size: 10px; font-weight: bold;" title="Y">Y</span>')
-      .replace(/\{Z\}/gi, '<span style="width: 18px; height: 18px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; background: linear-gradient(135deg, #cac5c0, #b0aaa5); font-size: 10px; font-weight: bold;" title="Z">Z</span>')
+      .replace(
+        /\{Y\}/gi,
+        '<span style="width: 18px; height: 18px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; background: linear-gradient(135deg, #cac5c0, #b0aaa5); font-size: 10px; font-weight: bold;" title="Y">Y</span>'
+      )
+      .replace(
+        /\{Z\}/gi,
+        '<span style="width: 18px; height: 18px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; background: linear-gradient(135deg, #cac5c0, #b0aaa5); font-size: 10px; font-weight: bold;" title="Z">Z</span>'
+      )
       // Colored mana (W, U, B, R, G, C)
-      .replace(
-        /\{W\}/gi,
-        () => {
-          const assetUrl = getManaSymbolAsset('w');
-          const style = assetUrl
-            ? `background-image: url('${assetUrl}'); background-size: cover; width: 18px; height: 18px; display: inline-block; border-radius: 50%; text-indent: -9999px; overflow: hidden;`
-            : `width: 18px; height: 18px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; background: #f8f6d8; font-size: 10px; font-weight: bold; color: #000;`;
-          return `<span style="${style}" title="White">${assetUrl ? '' : 'W'}</span>`;
-        }
-      )
-      .replace(
-        /\{U\}/gi,
-        () => {
-          const assetUrl = getManaSymbolAsset('u');
-          const style = assetUrl
-            ? `background-image: url('${assetUrl}'); background-size: cover; width: 18px; height: 18px; display: inline-block; border-radius: 50%; text-indent: -9999px; overflow: hidden;`
-            : `width: 18px; height: 18px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; background: #aae0fa; font-size: 10px; font-weight: bold; color: #000;`;
-          return `<span style="${style}" title="Blue">${assetUrl ? '' : 'U'}</span>`;
-        }
-      )
-      .replace(
-        /\{B\}/gi,
-        () => {
-          const assetUrl = getManaSymbolAsset('b');
-          const style = assetUrl
-            ? `background-image: url('${assetUrl}'); background-size: cover; width: 18px; height: 18px; display: inline-block; border-radius: 50%; text-indent: -9999px; overflow: hidden;`
-            : `width: 18px; height: 18px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; background: #ccc2c0; font-size: 10px; font-weight: bold; color: #000;`;
-          return `<span style="${style}" title="Black">${assetUrl ? '' : 'B'}</span>`;
-        }
-      )
-      .replace(
-        /\{R\}/gi,
-        () => {
-          const assetUrl = getManaSymbolAsset('r');
-          const style = assetUrl
-            ? `background-image: url('${assetUrl}'); background-size: cover; width: 18px; height: 18px; display: inline-block; border-radius: 50%; text-indent: -9999px; overflow: hidden;`
-            : `width: 18px; height: 18px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; background: #f9aa8f; font-size: 10px; font-weight: bold; color: #000;`;
-          return `<span style="${style}" title="Red">${assetUrl ? '' : 'R'}</span>`;
-        }
-      )
-      .replace(
-        /\{G\}/gi,
-        () => {
-          const assetUrl = getManaSymbolAsset('g');
-          const style = assetUrl
-            ? `background-image: url('${assetUrl}'); background-size: cover; width: 18px; height: 18px; display: inline-block; border-radius: 50%; text-indent: -9999px; overflow: hidden;`
-            : `width: 18px; height: 18px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; background: #9bd3ae; font-size: 10px; font-weight: bold; color: #000;`;
-          return `<span style="${style}" title="Green">${assetUrl ? '' : 'G'}</span>`;
-        }
-      )
-      .replace(
-        /\{C\}/gi,
-        () => {
-          const assetUrl = getManaSymbolAsset('c');
-          const style = assetUrl
-            ? `background-image: url('${assetUrl}'); background-size: cover; width: 18px; height: 18px; display: inline-block; border-radius: 50%; text-indent: -9999px; overflow: hidden;`
-            : `width: 18px; height: 18px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; background: linear-gradient(135deg, #cac5c0, #b0aaa5); font-size: 10px; font-weight: bold;`;
-          return `<span style="${style}" title="Colorless">${assetUrl ? '' : 'C'}</span>`;
-        }
-      )
+      .replace(/\{W\}/gi, () => {
+        const assetUrl = getManaSymbolAsset('w');
+        const style = assetUrl
+          ? `background-image: url('${assetUrl}'); background-size: cover; width: 18px; height: 18px; display: inline-block; border-radius: 50%; text-indent: -9999px; overflow: hidden;`
+          : `width: 18px; height: 18px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; background: #f8f6d8; font-size: 10px; font-weight: bold; color: #000;`;
+        return `<span style="${style}" title="White">${assetUrl ? '' : 'W'}</span>`;
+      })
+      .replace(/\{U\}/gi, () => {
+        const assetUrl = getManaSymbolAsset('u');
+        const style = assetUrl
+          ? `background-image: url('${assetUrl}'); background-size: cover; width: 18px; height: 18px; display: inline-block; border-radius: 50%; text-indent: -9999px; overflow: hidden;`
+          : `width: 18px; height: 18px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; background: #aae0fa; font-size: 10px; font-weight: bold; color: #000;`;
+        return `<span style="${style}" title="Blue">${assetUrl ? '' : 'U'}</span>`;
+      })
+      .replace(/\{B\}/gi, () => {
+        const assetUrl = getManaSymbolAsset('b');
+        const style = assetUrl
+          ? `background-image: url('${assetUrl}'); background-size: cover; width: 18px; height: 18px; display: inline-block; border-radius: 50%; text-indent: -9999px; overflow: hidden;`
+          : `width: 18px; height: 18px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; background: #ccc2c0; font-size: 10px; font-weight: bold; color: #000;`;
+        return `<span style="${style}" title="Black">${assetUrl ? '' : 'B'}</span>`;
+      })
+      .replace(/\{R\}/gi, () => {
+        const assetUrl = getManaSymbolAsset('r');
+        const style = assetUrl
+          ? `background-image: url('${assetUrl}'); background-size: cover; width: 18px; height: 18px; display: inline-block; border-radius: 50%; text-indent: -9999px; overflow: hidden;`
+          : `width: 18px; height: 18px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; background: #f9aa8f; font-size: 10px; font-weight: bold; color: #000;`;
+        return `<span style="${style}" title="Red">${assetUrl ? '' : 'R'}</span>`;
+      })
+      .replace(/\{G\}/gi, () => {
+        const assetUrl = getManaSymbolAsset('g');
+        const style = assetUrl
+          ? `background-image: url('${assetUrl}'); background-size: cover; width: 18px; height: 18px; display: inline-block; border-radius: 50%; text-indent: -9999px; overflow: hidden;`
+          : `width: 18px; height: 18px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; background: #9bd3ae; font-size: 10px; font-weight: bold; color: #000;`;
+        return `<span style="${style}" title="Green">${assetUrl ? '' : 'G'}</span>`;
+      })
+      .replace(/\{C\}/gi, () => {
+        const assetUrl = getManaSymbolAsset('c');
+        const style = assetUrl
+          ? `background-image: url('${assetUrl}'); background-size: cover; width: 18px; height: 18px; display: inline-block; border-radius: 50%; text-indent: -9999px; overflow: hidden;`
+          : `width: 18px; height: 18px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; background: linear-gradient(135deg, #cac5c0, #b0aaa5); font-size: 10px; font-weight: bold;`;
+        return `<span style="${style}" title="Colorless">${assetUrl ? '' : 'C'}</span>`;
+      })
       // Generic/Colorless mana (numbers 0-20)
-      .replace(
-        /\{(\d+)\}/g,
-        (match, num) => {
-          const assetUrl = getManaSymbolAsset(num);
-          const style = assetUrl
-            ? `background-image: url('${assetUrl}'); background-size: cover; width: 18px; height: 18px; display: inline-block; border-radius: 50%; text-indent: -9999px; overflow: hidden;`
-            : `width: 18px; height: 18px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; background: linear-gradient(135deg, #cac5c0, #b0aaa5); font-size: 10px; font-weight: bold; color: #333;`;
-          return `<span style="${style}" title="${num}">${assetUrl ? '' : num}</span>`;
-        }
-      )
+      .replace(/\{(\d+)\}/g, (match, num) => {
+        const assetUrl = getManaSymbolAsset(num);
+        const style = assetUrl
+          ? `background-image: url('${assetUrl}'); background-size: cover; width: 18px; height: 18px; display: inline-block; border-radius: 50%; text-indent: -9999px; overflow: hidden;`
+          : `width: 18px; height: 18px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; background: linear-gradient(135deg, #cac5c0, #b0aaa5); font-size: 10px; font-weight: bold; color: #333;`;
+        return `<span style="${style}" title="${num}">${assetUrl ? '' : num}</span>`;
+      })
       // Cleanup any remaining braces
       .replace(/[{}]/g, '')
   );
@@ -239,51 +212,39 @@ export function parseOracleText(text) {
   return (
     text
       // Three-part hybrid mana (e.g., {G/U/P}, {B/R/P}) - convert to lowercase
-      .replace(
-        /\{(\w+)\/(\w+)\/(\w+)\}/gi,
-        (match, first, second, third) => {
-          const symbolKey = `${first.toLowerCase()}${second.toLowerCase()}${third.toLowerCase()}`;
-          const assetUrl = getManaSymbolAsset(symbolKey);
-          const style = assetUrl 
-            ? `background-image: url('${assetUrl}'); background-size: cover; width: 18px; height: 18px; display: inline-block; border-radius: 50%; text-indent: -9999px; overflow: hidden; vertical-align: middle;`
-            : `width: 18px; height: 18px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; background: #ccc; font-size: 8px; font-weight: bold; vertical-align: middle;`;
-          return `<span style="${style}" title="${first}/${second}/${third}">${assetUrl ? '' : `${first}/${second}/${third}`}</span>`;
-        }
-      )
+      .replace(/\{(\w+)\/(\w+)\/(\w+)\}/gi, (match, first, second, third) => {
+        const symbolKey = `${first.toLowerCase()}${second.toLowerCase()}${third.toLowerCase()}`;
+        const assetUrl = getManaSymbolAsset(symbolKey);
+        const style = assetUrl
+          ? `background-image: url('${assetUrl}'); background-size: cover; width: 18px; height: 18px; display: inline-block; border-radius: 50%; text-indent: -9999px; overflow: hidden; vertical-align: middle;`
+          : `width: 18px; height: 18px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; background: #ccc; font-size: 8px; font-weight: bold; vertical-align: middle;`;
+        return `<span style="${style}" title="${first}/${second}/${third}">${assetUrl ? '' : `${first}/${second}/${third}`}</span>`;
+      })
       // Two-part hybrid mana (e.g., {W/U}, {2/W}, {B/R}, {B/P}) - convert to lowercase
-      .replace(
-        /\{(\w+)\/(\w+)\}/gi,
-        (match, first, second) => {
-          const symbolKey = `${first.toLowerCase()}${second.toLowerCase()}`;
-          const assetUrl = getManaSymbolAsset(symbolKey);
-          const style = assetUrl 
-            ? `background-image: url('${assetUrl}'); background-size: cover; width: 18px; height: 18px; display: inline-block; border-radius: 50%; text-indent: -9999px; overflow: hidden; vertical-align: middle;`
-            : `width: 18px; height: 18px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; background: #ccc; font-size: 10px; font-weight: bold; vertical-align: middle;`;
-          return `<span style="${style}" title="${first}/${second}">${assetUrl ? '' : `${first}/${second}`}</span>`;
-        }
-      )
+      .replace(/\{(\w+)\/(\w+)\}/gi, (match, first, second) => {
+        const symbolKey = `${first.toLowerCase()}${second.toLowerCase()}`;
+        const assetUrl = getManaSymbolAsset(symbolKey);
+        const style = assetUrl
+          ? `background-image: url('${assetUrl}'); background-size: cover; width: 18px; height: 18px; display: inline-block; border-radius: 50%; text-indent: -9999px; overflow: hidden; vertical-align: middle;`
+          : `width: 18px; height: 18px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; background: #ccc; font-size: 10px; font-weight: bold; vertical-align: middle;`;
+        return `<span style="${style}" title="${first}/${second}">${assetUrl ? '' : `${first}/${second}`}</span>`;
+      })
       // Snow mana
-      .replace(
-        /\{S\}/gi,
-        () => {
-          const assetUrl = getManaSymbolAsset('s');
-          const style = assetUrl
-            ? `background-image: url('${assetUrl}'); background-size: cover; width: 18px; height: 18px; display: inline-block; border-radius: 50%; text-indent: -9999px; overflow: hidden; vertical-align: middle;`
-            : `width: 18px; height: 18px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; background: #ccc; font-size: 10px; vertical-align: middle;`;
-          return `<span style="${style}" title="Snow">${assetUrl ? '' : 'S'}</span>`;
-        }
-      )
+      .replace(/\{S\}/gi, () => {
+        const assetUrl = getManaSymbolAsset('s');
+        const style = assetUrl
+          ? `background-image: url('${assetUrl}'); background-size: cover; width: 18px; height: 18px; display: inline-block; border-radius: 50%; text-indent: -9999px; overflow: hidden; vertical-align: middle;`
+          : `width: 18px; height: 18px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; background: #ccc; font-size: 10px; vertical-align: middle;`;
+        return `<span style="${style}" title="Snow">${assetUrl ? '' : 'S'}</span>`;
+      })
       // Tap symbol
-      .replace(
-        /\{T\}/gi,
-        () => {
-          const assetUrl = getManaSymbolAsset('t');
-          const style = assetUrl
-            ? `background-image: url('${assetUrl}'); background-size: cover; width: 18px; height: 18px; display: inline-block; border-radius: 50%; text-indent: -9999px; overflow: hidden; vertical-align: middle;`
-            : `width: 18px; height: 18px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; background: #ccc; font-size: 10px; vertical-align: middle;`;
-          return `<span style="${style}" title="Tap">${assetUrl ? '' : '⟳'}</span>`;
-        }
-      )
+      .replace(/\{T\}/gi, () => {
+        const assetUrl = getManaSymbolAsset('t');
+        const style = assetUrl
+          ? `background-image: url('${assetUrl}'); background-size: cover; width: 18px; height: 18px; display: inline-block; border-radius: 50%; text-indent: -9999px; overflow: hidden; vertical-align: middle;`
+          : `width: 18px; height: 18px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; background: #ccc; font-size: 10px; vertical-align: middle;`;
+        return `<span style="${style}" title="Tap">${assetUrl ? '' : '⟳'}</span>`;
+      })
       // Untap symbol
       .replace(
         /\{Q\}/gi,
@@ -302,79 +263,64 @@ export function parseOracleText(text) {
           : `width: 18px; height: 18px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; background: linear-gradient(135deg, #cac5c0, #b0aaa5); font-size: 10px; font-weight: bold; vertical-align: middle;`;
         return `<span style="${style}" title="X">${assetUrl ? '' : 'X'}</span>`;
       })
-      .replace(/\{Y\}/gi, '<span style="width: 18px; height: 18px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; background: linear-gradient(135deg, #cac5c0, #b0aaa5); font-size: 10px; font-weight: bold; vertical-align: middle;" title="Y">Y</span>')
-      .replace(/\{Z\}/gi, '<span style="width: 18px; height: 18px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; background: linear-gradient(135deg, #cac5c0, #b0aaa5); font-size: 10px; font-weight: bold; vertical-align: middle;" title="Z">Z</span>')
+      .replace(
+        /\{Y\}/gi,
+        '<span style="width: 18px; height: 18px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; background: linear-gradient(135deg, #cac5c0, #b0aaa5); font-size: 10px; font-weight: bold; vertical-align: middle;" title="Y">Y</span>'
+      )
+      .replace(
+        /\{Z\}/gi,
+        '<span style="width: 18px; height: 18px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; background: linear-gradient(135deg, #cac5c0, #b0aaa5); font-size: 10px; font-weight: bold; vertical-align: middle;" title="Z">Z</span>'
+      )
       // Colored mana (W, U, B, R, G, C)
-      .replace(
-        /\{W\}/gi,
-        () => {
-          const assetUrl = getManaSymbolAsset('w');
-          const style = assetUrl
-            ? `background-image: url('${assetUrl}'); background-size: cover; width: 18px; height: 18px; display: inline-block; border-radius: 50%; text-indent: -9999px; overflow: hidden; vertical-align: middle;`
-            : `width: 18px; height: 18px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; background: #f8f6d8; font-size: 10px; font-weight: bold; color: #000; vertical-align: middle;`;
-          return `<span style="${style}" title="White">${assetUrl ? '' : 'W'}</span>`;
-        }
-      )
-      .replace(
-        /\{U\}/gi,
-        () => {
-          const assetUrl = getManaSymbolAsset('u');
-          const style = assetUrl
-            ? `background-image: url('${assetUrl}'); background-size: cover; width: 18px; height: 18px; display: inline-block; border-radius: 50%; text-indent: -9999px; overflow: hidden; vertical-align: middle;`
-            : `width: 18px; height: 18px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; background: #aae0fa; font-size: 10px; font-weight: bold; color: #000; vertical-align: middle;`;
-          return `<span style="${style}" title="Blue">${assetUrl ? '' : 'U'}</span>`;
-        }
-      )
-      .replace(
-        /\{B\}/gi,
-        () => {
-          const assetUrl = getManaSymbolAsset('b');
-          const style = assetUrl
-            ? `background-image: url('${assetUrl}'); background-size: cover; width: 18px; height: 18px; display: inline-block; border-radius: 50%; text-indent: -9999px; overflow: hidden; vertical-align: middle;`
-            : `width: 18px; height: 18px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; background: #ccc2c0; font-size: 10px; font-weight: bold; color: #000; vertical-align: middle;`;
-          return `<span style="${style}" title="Black">${assetUrl ? '' : 'B'}</span>`;
-        }
-      )
-      .replace(
-        /\{R\}/gi,
-        () => {
-          const assetUrl = getManaSymbolAsset('r');
-          const style = assetUrl
-            ? `background-image: url('${assetUrl}'); background-size: cover; width: 18px; height: 18px; display: inline-block; border-radius: 50%; text-indent: -9999px; overflow: hidden; vertical-align: middle;`
-            : `width: 18px; height: 18px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; background: #f9aa8f; font-size: 10px; font-weight: bold; color: #000; vertical-align: middle;`;
-          return `<span style="${style}" title="Red">${assetUrl ? '' : 'R'}</span>`;
-        }
-      )
-      .replace(
-        /\{G\}/gi,
-        () => {
-          const assetUrl = getManaSymbolAsset('g');
-          const style = assetUrl
-            ? `background-image: url('${assetUrl}'); background-size: cover; width: 18px; height: 18px; display: inline-block; border-radius: 50%; text-indent: -9999px; overflow: hidden; vertical-align: middle;`
-            : `width: 18px; height: 18px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; background: #9bd3ae; font-size: 10px; font-weight: bold; color: #000; vertical-align: middle;`;
-          return `<span style="${style}" title="Green">${assetUrl ? '' : 'G'}</span>`;
-        }
-      )
-      .replace(
-        /\{C\}/gi,
-        () => {
-          const assetUrl = getManaSymbolAsset('c');
-          const style = assetUrl
-            ? `background-image: url('${assetUrl}'); background-size: cover; width: 18px; height: 18px; display: inline-block; border-radius: 50%; text-indent: -9999px; overflow: hidden; vertical-align: middle;`
-            : `width: 18px; height: 18px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; background: linear-gradient(135deg, #cac5c0, #b0aaa5); font-size: 10px; font-weight: bold; vertical-align: middle;`;
-          return `<span style="${style}" title="Colorless">${assetUrl ? '' : 'C'}</span>`;
-        }
-      )
+      .replace(/\{W\}/gi, () => {
+        const assetUrl = getManaSymbolAsset('w');
+        const style = assetUrl
+          ? `background-image: url('${assetUrl}'); background-size: cover; width: 18px; height: 18px; display: inline-block; border-radius: 50%; text-indent: -9999px; overflow: hidden; vertical-align: middle;`
+          : `width: 18px; height: 18px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; background: #f8f6d8; font-size: 10px; font-weight: bold; color: #000; vertical-align: middle;`;
+        return `<span style="${style}" title="White">${assetUrl ? '' : 'W'}</span>`;
+      })
+      .replace(/\{U\}/gi, () => {
+        const assetUrl = getManaSymbolAsset('u');
+        const style = assetUrl
+          ? `background-image: url('${assetUrl}'); background-size: cover; width: 18px; height: 18px; display: inline-block; border-radius: 50%; text-indent: -9999px; overflow: hidden; vertical-align: middle;`
+          : `width: 18px; height: 18px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; background: #aae0fa; font-size: 10px; font-weight: bold; color: #000; vertical-align: middle;`;
+        return `<span style="${style}" title="Blue">${assetUrl ? '' : 'U'}</span>`;
+      })
+      .replace(/\{B\}/gi, () => {
+        const assetUrl = getManaSymbolAsset('b');
+        const style = assetUrl
+          ? `background-image: url('${assetUrl}'); background-size: cover; width: 18px; height: 18px; display: inline-block; border-radius: 50%; text-indent: -9999px; overflow: hidden; vertical-align: middle;`
+          : `width: 18px; height: 18px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; background: #ccc2c0; font-size: 10px; font-weight: bold; color: #000; vertical-align: middle;`;
+        return `<span style="${style}" title="Black">${assetUrl ? '' : 'B'}</span>`;
+      })
+      .replace(/\{R\}/gi, () => {
+        const assetUrl = getManaSymbolAsset('r');
+        const style = assetUrl
+          ? `background-image: url('${assetUrl}'); background-size: cover; width: 18px; height: 18px; display: inline-block; border-radius: 50%; text-indent: -9999px; overflow: hidden; vertical-align: middle;`
+          : `width: 18px; height: 18px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; background: #f9aa8f; font-size: 10px; font-weight: bold; color: #000; vertical-align: middle;`;
+        return `<span style="${style}" title="Red">${assetUrl ? '' : 'R'}</span>`;
+      })
+      .replace(/\{G\}/gi, () => {
+        const assetUrl = getManaSymbolAsset('g');
+        const style = assetUrl
+          ? `background-image: url('${assetUrl}'); background-size: cover; width: 18px; height: 18px; display: inline-block; border-radius: 50%; text-indent: -9999px; overflow: hidden; vertical-align: middle;`
+          : `width: 18px; height: 18px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; background: #9bd3ae; font-size: 10px; font-weight: bold; color: #000; vertical-align: middle;`;
+        return `<span style="${style}" title="Green">${assetUrl ? '' : 'G'}</span>`;
+      })
+      .replace(/\{C\}/gi, () => {
+        const assetUrl = getManaSymbolAsset('c');
+        const style = assetUrl
+          ? `background-image: url('${assetUrl}'); background-size: cover; width: 18px; height: 18px; display: inline-block; border-radius: 50%; text-indent: -9999px; overflow: hidden; vertical-align: middle;`
+          : `width: 18px; height: 18px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; background: linear-gradient(135deg, #cac5c0, #b0aaa5); font-size: 10px; font-weight: bold; vertical-align: middle;`;
+        return `<span style="${style}" title="Colorless">${assetUrl ? '' : 'C'}</span>`;
+      })
       // Generic/Colorless mana (numbers 0-20)
-      .replace(
-        /\{(\d+)\}/g,
-        (match, num) => {
-          const assetUrl = getManaSymbolAsset(num);
-          const style = assetUrl
-            ? `background-image: url('${assetUrl}'); background-size: cover; width: 18px; height: 18px; display: inline-block; border-radius: 50%; text-indent: -9999px; overflow: hidden; vertical-align: middle;`
-            : `width: 18px; height: 18px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; background: linear-gradient(135deg, #cac5c0, #b0aaa5); font-size: 10px; font-weight: bold; color: #333; vertical-align: middle;`;
-          return `<span style="${style}" title="${num}">${assetUrl ? '' : num}</span>`;
-        }
-      )
+      .replace(/\{(\d+)\}/g, (match, num) => {
+        const assetUrl = getManaSymbolAsset(num);
+        const style = assetUrl
+          ? `background-image: url('${assetUrl}'); background-size: cover; width: 18px; height: 18px; display: inline-block; border-radius: 50%; text-indent: -9999px; overflow: hidden; vertical-align: middle;`
+          : `width: 18px; height: 18px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; background: linear-gradient(135deg, #cac5c0, #b0aaa5); font-size: 10px; font-weight: bold; color: #333; vertical-align: middle;`;
+        return `<span style="${style}" title="${num}">${assetUrl ? '' : num}</span>`;
+      })
   );
 }

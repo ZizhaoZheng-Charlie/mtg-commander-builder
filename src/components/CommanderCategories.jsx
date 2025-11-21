@@ -47,13 +47,13 @@ function CommanderCategories({ onCommanderSelect, setLoading }) {
     }
   }, [activeCategory, allCards]);
 
-  const handleCategoryClick = (categoryId) => {
+  const handleCategoryClick = categoryId => {
     setActiveCategory(categoryId);
     // Scroll to top
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const handleCardClick = (card) => {
+  const handleCardClick = card => {
     setSelectedCard(card);
   };
 
@@ -73,7 +73,7 @@ function CommanderCategories({ onCommanderSelect, setLoading }) {
           Categories
         </h3>
         <nav className="space-y-1">
-          {categories.map((category) => (
+          {categories.map(category => (
             <button
               key={category.id}
               onClick={() => handleCategoryClick(category.id)}
@@ -88,7 +88,7 @@ function CommanderCategories({ onCommanderSelect, setLoading }) {
             </button>
           ))}
         </nav>
-        
+
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all text-left text-text-secondary hover:bg-white/5 hover:text-text-primary mt-4 border-t border-white/10 pt-4"
@@ -120,11 +120,8 @@ function CommanderCategories({ onCommanderSelect, setLoading }) {
             </div>
           ) : displayCards.length > 0 ? (
             <div className="grid grid-cols-[repeat(auto-fill,minmax(200px,1fr))] gap-6">
-              {displayCards.map((card) => {
-                const imageUri =
-                  card.image_uris?.[0] ||
-                  card.image_uri ||
-                  '';
+              {displayCards.map(card => {
+                const imageUri = card.image_uris?.[0] || card.image_uri || '';
 
                 return (
                   <div
@@ -152,7 +149,7 @@ function CommanderCategories({ onCommanderSelect, setLoading }) {
                         </p>
                       )}
                     </div>
-                    
+
                     {/* Badges */}
                     <div className="absolute top-2 right-2 flex flex-col gap-1">
                       {card.new && (
@@ -200,4 +197,3 @@ function CommanderCategories({ onCommanderSelect, setLoading }) {
 }
 
 export default CommanderCategories;
-

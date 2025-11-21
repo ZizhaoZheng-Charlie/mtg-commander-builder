@@ -69,17 +69,19 @@ class CardLibrary {
   private async loadEDHRECCommanders(): Promise<ScryfallCard[]> {
     try {
       console.log('📥 Loading EDHREC reference commanders...');
-      
+
       // Import the EDHREC data directly
       const edhrecData = await import('../../reference/edhrec.json');
       const commanders = edhrecData.default || edhrecData;
-      
+
       if (!Array.isArray(commanders)) {
         console.warn('Invalid EDHREC reference format');
         return [];
       }
 
-      console.log(`✅ Loaded ${commanders.length} commanders from EDHREC reference`);
+      console.log(
+        `✅ Loaded ${commanders.length} commanders from EDHREC reference`
+      );
       return commanders as ScryfallCard[];
     } catch (error) {
       console.warn('Error loading EDHREC reference data:', error);
@@ -110,14 +112,16 @@ class CardLibrary {
           `✅ Loaded from cache! ${cachedCards.length.toLocaleString()} cards`
         );
         this.cards = cachedCards;
-        
+
         // Still supplement with EDHREC data even when using cache
         const edhrecCommanders = await this.loadEDHRECCommanders();
         if (edhrecCommanders.length > 0) {
           this.cards = this.mergeCardData(this.cards, edhrecCommanders);
-          console.log(`✅ Total cards after EDHREC merge: ${this.cards.length.toLocaleString()}`);
+          console.log(
+            `✅ Total cards after EDHREC merge: ${this.cards.length.toLocaleString()}`
+          );
         }
-        
+
         this.isLoaded = true;
         this.isLoading = false;
         this.notifyListeners();
@@ -215,7 +219,9 @@ class CardLibrary {
     });
 
     if (newCardsAdded > 0) {
-      console.log(`➕ Added ${newCardsAdded} new commanders from EDHREC reference`);
+      console.log(
+        `➕ Added ${newCardsAdded} new commanders from EDHREC reference`
+      );
     }
 
     return Array.from(cardMap.values());
@@ -265,11 +271,11 @@ class CardLibrary {
    */
   private extractColorsFromOracleText(card: ScryfallCard): string[] {
     const colors = new Set<string>();
-    
+
     // Combine oracle text from main card and all card_faces
     const allOracleText = [
       card.oracle_text || '',
-      ...(card.card_faces?.map(face => face.oracle_text || '') || [])
+      ...(card.card_faces?.map(face => face.oracle_text || '') || []),
     ]
       .filter(text => text)
       .join(' ')
@@ -279,12 +285,12 @@ class CardLibrary {
 
     // Map land types to their mana colors
     const landTypeMap: { [key: string]: string } = {
-      'forest': 'G',
-      'island': 'U',
-      'mountain': 'R',
-      'swamp': 'B',
-      'plains': 'W',
-      'wastes': 'C',
+      forest: 'G',
+      island: 'U',
+      mountain: 'R',
+      swamp: 'B',
+      plains: 'W',
+      wastes: 'C',
     };
 
     // Check for land type references in oracle text
@@ -316,17 +322,17 @@ class CardLibrary {
 
     // Get colors from card's color_identity field
     const cardColorIdentity = card.color_identity || [];
-    
+
     // Extract colors from oracle text (e.g., land type references)
     const oracleTextColors = this.extractColorsFromOracleText(card);
-    
+
     // Combine all colors the card can produce or use
     const allCardColors = new Set([...cardColorIdentity, ...oracleTextColors]);
-    
+
     // If card has no color identity and no oracle text colors (truly colorless), it's always allowed
     if (allCardColors.size === 0) return true;
 
-    // Check if every color in the card's identity (including oracle text colors) 
+    // Check if every color in the card's identity (including oracle text colors)
     // is in the commander's identity
     return Array.from(allCardColors).every(color =>
       commanderColorIdentity.includes(color)
@@ -351,16 +357,14 @@ class CardLibrary {
 
     const results = this.cards
       .filter(card => this.isCommanderLegal(card))
-      .filter(card =>
-        this.isValidColorIdentity(card, commanderColorIdentity)
-      )
+      .filter(card => this.isValidColorIdentity(card, commanderColorIdentity))
       .filter(card => {
         const nameLower = card.name.toLowerCase();
         const nameNoSpaces = nameLower.replace(/\s+/g, '');
-        
+
         // Search in name (exact match)
         if (nameLower.includes(queryLower)) return true;
-        
+
         // Search in name (without spaces to handle "counter spell" vs "Counterspell")
         if (nameNoSpaces.includes(queryNoSpaces)) return true;
 
@@ -395,9 +399,7 @@ class CardLibrary {
 
     const results = this.cards
       .filter(card => this.isCommanderLegal(card))
-      .filter(card =>
-        this.isValidColorIdentity(card, commanderColorIdentity)
-      )
+      .filter(card => this.isValidColorIdentity(card, commanderColorIdentity))
       .map(card => {
         let score = 0;
         const cardData = {
@@ -454,20 +456,41 @@ class CardLibrary {
    */
   private isIllegalCommander(card: ScryfallCard): boolean {
     // Explicitly banned or not legal in Commander
-    if (card.legalities?.commander === 'banned' || 
-        card.legalities?.commander === 'not_legal') {
+    if (
+      card.legalities?.commander === 'banned' ||
+      card.legalities?.commander === 'not_legal'
+    ) {
       return true;
     }
 
     // Filter out digital-only cards (Alchemy sets usually start with 'y')
     const set = (card.set || '').toLowerCase();
     const digitalOnlySets = [
-      'alchemy', 'arena', 'arenasup',
-      'yneo', 'ydmu', 'ysnc', 'yone', 'ymid', 'yafr', 'ykhm', 'yznr', 'yeld', 'yikr', 'yiko', 'ythb', 'ylci', 'ymkm', 'yotj'
+      'alchemy',
+      'arena',
+      'arenasup',
+      'yneo',
+      'ydmu',
+      'ysnc',
+      'yone',
+      'ymid',
+      'yafr',
+      'ykhm',
+      'yznr',
+      'yeld',
+      'yikr',
+      'yiko',
+      'ythb',
+      'ylci',
+      'ymkm',
+      'yotj',
     ];
-    
+
     // Check if set matches digital-only sets or starts with 'y' (Alchemy convention)
-    if (digitalOnlySets.includes(set) || (set.startsWith('y') && set.length === 4)) {
+    if (
+      digitalOnlySets.includes(set) ||
+      (set.startsWith('y') && set.length === 4)
+    ) {
       return true;
     }
 
@@ -485,10 +508,11 @@ class CardLibrary {
     // This catches cards that might slip through
     if (card.legalities) {
       const legalities = card.legalities;
-      const isOnlyDigital = 
-        (legalities.commander === 'not_legal') &&
-        (legalities.vintage === 'not_legal' || legalities.legacy === 'not_legal');
-      
+      const isOnlyDigital =
+        legalities.commander === 'not_legal' &&
+        (legalities.vintage === 'not_legal' ||
+          legalities.legacy === 'not_legal');
+
       if (isOnlyDigital) {
         return true;
       }
@@ -513,10 +537,10 @@ class CardLibrary {
     const results = this.cards.filter(card => {
       const nameLower = card.name.toLowerCase();
       const nameNoSpaces = nameLower.replace(/\s+/g, '');
-      
+
       // Search in name (exact match)
       if (nameLower.includes(queryLower)) return true;
-      
+
       // Search in name (without spaces)
       if (nameNoSpaces.includes(queryNoSpaces)) return true;
 
@@ -525,7 +549,10 @@ class CardLibrary {
         for (const face of card.card_faces) {
           const faceNameLower = face.name?.toLowerCase() || '';
           const faceNameNoSpaces = faceNameLower.replace(/\s+/g, '');
-          if (faceNameLower.includes(queryLower) || faceNameNoSpaces.includes(queryNoSpaces)) {
+          if (
+            faceNameLower.includes(queryLower) ||
+            faceNameNoSpaces.includes(queryNoSpaces)
+          ) {
             return true;
           }
         }
@@ -541,7 +568,10 @@ class CardLibrary {
       // Search in card_faces oracle text
       if (card.card_faces && card.card_faces.length > 0) {
         for (const face of card.card_faces) {
-          if (face.oracle_text && face.oracle_text.toLowerCase().includes(queryLower)) {
+          if (
+            face.oracle_text &&
+            face.oracle_text.toLowerCase().includes(queryLower)
+          ) {
             return true;
           }
         }
@@ -554,7 +584,9 @@ class CardLibrary {
     const commanders = results.filter(card => {
       // Filter out explicitly illegal cards (banned, not_legal, digital-only)
       if (this.isIllegalCommander(card)) {
-        console.log(`🚫 Filtered out illegal commander: ${card.name} (set: ${card.set}, digital: ${card.digital}, legality: ${card.legalities?.commander})`);
+        console.log(
+          `🚫 Filtered out illegal commander: ${card.name} (set: ${card.set}, digital: ${card.digital}, legality: ${card.legalities?.commander})`
+        );
         return false;
       }
 
@@ -567,7 +599,7 @@ class CardLibrary {
       // Combine oracle text from main card and all card_faces
       const allOracleText = [
         card.oracle_text || '',
-        ...(card.card_faces?.map(face => face.oracle_text || '') || [])
+        ...(card.card_faces?.map(face => face.oracle_text || '') || []),
       ]
         .filter(text => text)
         .join(' ')
@@ -582,7 +614,8 @@ class CardLibrary {
 
       // Cards with loyalty counters (planeswalkers) - check main card and first face
       const hasLoyalty =
-        card.loyalty !== undefined || card.card_faces?.[0]?.loyalty !== undefined;
+        card.loyalty !== undefined ||
+        card.card_faces?.[0]?.loyalty !== undefined;
 
       // Two-commander mechanics (REQUIRE a second commander):
 

@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo, useState, useEffect, useCallback } from 'react';
 import {
   getDeckCount,
   removeFromDeck,
@@ -6,18 +6,21 @@ import {
 } from '../utils/deckUtils';
 import { parseManaSymbols } from '../utils/manaSymbols';
 
-function DeckBuilder({ 
-  deck, 
-  commander, 
+function DeckBuilder({
+  deck,
+  commander,
   secondCommander,
-  onDeckChange, 
-  onCardClick, 
+  onDeckChange,
+  onCardClick,
   onChangeCommander,
   onRemoveSecondCommander,
   requiresSecondCommander,
-  onOpenPartnerSearch
+  onOpenPartnerSearch,
 }) {
   const deckCount = useMemo(() => getDeckCount(deck), [deck]);
+  const [showCopyModal, setShowCopyModal] = useState(false);
+  const [deckText, setDeckText] = useState('');
+  const [copySuccess, setCopySuccess] = useState(false);
 
   const handleRemoveCard = cardId => {
     onDeckChange(removeFromDeck(deck, cardId));
@@ -33,6 +36,83 @@ function DeckBuilder({
       onChangeCommander(); // Reset to commander search
     }
   };
+
+  // Format deck as quantity card name (no brackets)
+  const formatDeck = useMemo(() => {
+    return deck
+      .map(card => {
+        const quantity = card.quantity || 1;
+        return `${quantity} ${card.name}`;
+      })
+      .join('\n');
+  }, [deck]);
+
+  // Update deck text when modal opens
+  useEffect(() => {
+    if (showCopyModal) {
+      setDeckText(formatDeck);
+    }
+  }, [showCopyModal, formatDeck]);
+
+  const handleOpenCopyModal = () => {
+    if (deck.length === 0) {
+      return;
+    }
+    setShowCopyModal(true);
+  };
+
+  const handleCloseCopyModal = useCallback(() => {
+    setShowCopyModal(false);
+    setCopySuccess(false);
+  }, []);
+
+  const handleCopyFromModal = async () => {
+    if (!deckText.trim()) {
+      return;
+    }
+
+    try {
+      await navigator.clipboard.writeText(deckText);
+      setCopySuccess(true);
+      setTimeout(() => setCopySuccess(false), 2000);
+    } catch (err) {
+      console.error('Failed to copy deck:', err);
+      // Fallback for older browsers
+      const textArea = document.createElement('textarea');
+      textArea.value = deckText;
+      textArea.style.position = 'fixed';
+      textArea.style.opacity = '0';
+      document.body.appendChild(textArea);
+      textArea.select();
+      try {
+        document.execCommand('copy');
+        setCopySuccess(true);
+        setTimeout(() => setCopySuccess(false), 2000);
+      } catch (fallbackErr) {
+        console.error('Fallback copy failed:', fallbackErr);
+      }
+      document.body.removeChild(textArea);
+    }
+  };
+
+  // Handle ESC key to close modal
+  useEffect(() => {
+    const handleEscape = e => {
+      if (e.key === 'Escape' && showCopyModal) {
+        handleCloseCopyModal();
+      }
+    };
+
+    if (showCopyModal) {
+      document.addEventListener('keydown', handleEscape);
+      document.body.style.overflow = 'hidden';
+    }
+
+    return () => {
+      document.removeEventListener('keydown', handleEscape);
+      document.body.style.overflow = 'unset';
+    };
+  }, [showCopyModal, handleCloseCopyModal]);
 
   const commanderImage =
     commander?.image_uris?.normal ||
@@ -150,7 +230,11 @@ function DeckBuilder({
                     e.stopPropagation();
                     if (isSecondCommander && onRemoveSecondCommander) {
                       onRemoveSecondCommander();
-                    } else if (card.isCommander && !isSecondCommander && onChangeCommander) {
+                    } else if (
+                      card.isCommander &&
+                      !isSecondCommander &&
+                      onChangeCommander
+                    ) {
                       // Main commander removed: reset deck and go back to commander search
                       onChangeCommander();
                     } else {
@@ -187,6 +271,13 @@ function DeckBuilder({
               </button>
             )}
             <button
+              className="px-6 py-3 bg-white/10 text-text-primary border border-white/10 rounded-lg text-base font-semibold cursor-pointer transition-all inline-flex items-center gap-2 hover:bg-white/15 hover:border-magic-blue disabled:opacity-50 disabled:cursor-not-allowed"
+              onClick={handleOpenCopyModal}
+              disabled={deck.length === 0}
+            >
+              📋 Copy Deck
+            </button>
+            <button
               className="px-6 py-3 bg-white/10 text-text-primary border border-white/10 rounded-lg text-base font-semibold cursor-pointer transition-all inline-flex items-center gap-2 hover:bg-white/15 hover:border-magic-blue"
               onClick={handleClearDeck}
             >
@@ -202,9 +293,12 @@ function DeckBuilder({
               <div className="flex items-center gap-3">
                 <span className="text-2xl">⚠️</span>
                 <div>
-                  <p className="text-red-400 font-bold text-base">Second Commander Required!</p>
+                  <p className="text-red-400 font-bold text-base">
+                    Second Commander Required!
+                  </p>
                   <p className="text-red-300 text-sm">
-                    {commander?.name} requires a second commander to complete your deck.
+                    {commander?.name} requires a second commander to complete
+                    your deck.
                   </p>
                 </div>
               </div>
@@ -213,10 +307,12 @@ function DeckBuilder({
                   onClick={() => {
                     onOpenPartnerSearch();
                     // Scroll to partner selector
-                    document.getElementById('partner-selector')?.scrollIntoView({ 
-                      behavior: 'smooth', 
-                      block: 'center' 
-                    });
+                    document
+                      .getElementById('partner-selector')
+                      ?.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'center',
+                      });
                   }}
                   className="px-6 py-3 bg-magic-purple/30 text-magic-purple border-2 border-magic-purple/50 rounded-lg text-base font-bold cursor-pointer transition-all hover:bg-magic-purple hover:text-white whitespace-nowrap flex items-center gap-2"
                 >
@@ -246,6 +342,57 @@ function DeckBuilder({
           </div>
         </div>
       </div>
+
+      {/* Copy Deck Modal */}
+      {showCopyModal && (
+        <div className="fixed inset-0 z-[10000] flex justify-center items-center p-8">
+          <div
+            className="absolute inset-0 bg-black/70 backdrop-blur-sm"
+            onClick={handleCloseCopyModal}
+          ></div>
+          <div className="relative max-w-4xl w-full max-h-[90vh] overflow-y-auto z-10 glass-card p-6">
+            <div className="absolute top-6 right-6 flex items-center gap-2 z-10">
+              <button
+                className="w-10 h-10 bg-white/10 border border-white/10 rounded-full text-text-primary text-xl cursor-pointer transition-all flex items-center justify-center hover:bg-red-500/30 hover:border-red-500 hover:text-red-500"
+                onClick={handleCloseCopyModal}
+                title="Close"
+              >
+                &times;
+              </button>
+            </div>
+            <div className="mb-6">
+              <h2 className="text-2xl font-bold text-text-primary flex items-center gap-2 mb-2">
+                <span className="text-xl">📋</span>
+                Deck List
+              </h2>
+              <p className="text-text-secondary text-sm">
+                Edit your deck list below, then copy to clipboard
+              </p>
+            </div>
+            <textarea
+              value={deckText}
+              onChange={e => setDeckText(e.target.value)}
+              className="w-full h-[60vh] min-h-[400px] bg-white/5 border border-white/20 rounded-lg p-4 text-text-primary font-mono text-sm leading-relaxed resize-none focus:outline-none focus:border-magic-blue focus:ring-2 focus:ring-magic-blue/20"
+              placeholder="Deck list will appear here..."
+            />
+            <div className="flex justify-end items-center gap-3 mt-6 pt-6 border-t border-white/10">
+              <button
+                className="px-6 py-3 bg-white/10 text-text-primary border border-white/10 rounded-lg text-base font-semibold cursor-pointer transition-all inline-flex items-center gap-2 hover:bg-white/15 hover:border-magic-blue"
+                onClick={handleCloseCopyModal}
+              >
+                Cancel
+              </button>
+              <button
+                className="px-6 py-3 bg-gradient-to-r from-magic-blue to-magic-purple text-white text-base font-semibold rounded-lg cursor-pointer transition-all inline-flex items-center gap-2 hover:-translate-y-0.5 hover:shadow-[0_6px_20px_rgba(59,130,246,0.4)] active:translate-y-0 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0"
+                onClick={handleCopyFromModal}
+                disabled={!deckText.trim()}
+              >
+                {copySuccess ? '✓ Copied!' : '📋 Copy to Clipboard'}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }

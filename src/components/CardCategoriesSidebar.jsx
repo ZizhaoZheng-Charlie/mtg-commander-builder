@@ -1,6 +1,10 @@
 import { useState, useEffect, useMemo } from 'react';
 
-function CardCategoriesSidebar({ activeCategory, onCategoryClick, edhrecData }) {
+function CardCategoriesSidebar({
+  activeCategory,
+  onCategoryClick,
+  edhrecData,
+}) {
   const [isVisible, setIsVisible] = useState(true);
 
   const categories = useMemo(() => {
@@ -39,13 +43,16 @@ function CardCategoriesSidebar({ activeCategory, onCategoryClick, edhrecData }) 
     const skipCategories = [
       'high synergy cards',
       'top cards',
-      'signature cards'
+      'signature cards',
     ];
 
     const dynamicCategories = edhrecData.container.json_dict.cardlists
       .filter(cardlist => {
         const header = cardlist.header.toLowerCase();
-        return !skipCategories.includes(header) && (cardlist.cardviews?.length || 0) > 0;
+        return (
+          !skipCategories.includes(header) &&
+          (cardlist.cardviews?.length || 0) > 0
+        );
       })
       .map(cardlist => ({
         id: getCategoryId(cardlist.header),
@@ -71,7 +78,7 @@ function CardCategoriesSidebar({ activeCategory, onCategoryClick, edhrecData }) 
     if (onCategoryClick) {
       onCategoryClick(categoryId);
     }
-    
+
     // For High Synergy and Top Cards, scroll to them
     if (categoryId === 'high-synergy' || categoryId === 'top-cards') {
       const element = document.getElementById(categoryId);
@@ -114,20 +121,17 @@ function CardCategoriesSidebar({ activeCategory, onCategoryClick, edhrecData }) 
           ))}
         </nav>
       </div>
-      
+
       {/* Toggle button for mobile */}
       <button
         onClick={() => setIsVisible(!isVisible)}
         className="fixed left-0 top-1/2 -translate-y-1/2 bg-slate-900/95 backdrop-blur-md border border-white/10 rounded-r-lg p-2 transition-all hover:bg-slate-800 lg:hidden"
         style={{ left: isVisible ? '14rem' : '0' }}
       >
-        <span className="text-white text-xl">
-          {isVisible ? '◀' : '▶'}
-        </span>
+        <span className="text-white text-xl">{isVisible ? '◀' : '▶'}</span>
       </button>
     </aside>
   );
 }
 
 export default CardCategoriesSidebar;
-

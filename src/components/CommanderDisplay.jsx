@@ -15,13 +15,19 @@ function CommanderDisplay({
       if (!commander) return;
 
       setLoading(true);
-      
+
       // Extract front face name for double-faced cards (EDHREC uses front face only)
       const commanderName = commander.card_faces?.[0]?.name || commander.name;
-      const secondCommanderName = secondCommander?.card_faces?.[0]?.name || secondCommander?.name;
-      
+      const secondCommanderName =
+        secondCommander?.card_faces?.[0]?.name || secondCommander?.name;
+
       if (secondCommander) {
-        console.log('🤝 Fetching EDHREC data for partner pair:', commanderName, '+', secondCommanderName);
+        console.log(
+          '🤝 Fetching EDHREC data for partner pair:',
+          commanderName,
+          '+',
+          secondCommanderName
+        );
       } else {
         console.log('🔍 Fetching EDHREC data for:', commanderName);
       }
@@ -29,7 +35,7 @@ function CommanderDisplay({
       try {
         // Get EDHREC data - pass second commander if present
         const edhrecData = await getEDHRECData(
-          commanderName, 
+          commanderName,
           setLoading,
           secondCommanderName
         );
@@ -60,7 +66,7 @@ function CommanderDisplay({
                 'swamp',
                 'mountain',
                 'forest',
-                'wastes'
+                'wastes',
               ].includes(cardview.name.toLowerCase());
 
               if (isBasicLand) {
@@ -128,7 +134,14 @@ function CommanderDisplay({
     };
 
     loadCommanderData();
-  }, [commander, secondCommander, onSynergyData, onTopCardsData, onEdhrecData, setLoading]);
+  }, [
+    commander,
+    secondCommander,
+    onSynergyData,
+    onTopCardsData,
+    onEdhrecData,
+    setLoading,
+  ]);
 
   // Don't render any UI, just handle data loading
   return null;
@@ -143,7 +156,7 @@ function getScryfallFrontFaceName(scryfallCard) {
   if (scryfallCard.card_faces && scryfallCard.card_faces.length > 0) {
     return scryfallCard.card_faces[0].name || scryfallCard.name;
   }
-  
+
   // Fall back to extracting from name string
   return extractFrontFaceName(scryfallCard.name);
 }
@@ -164,17 +177,22 @@ async function fetchCardDetails(cards, type = 'cards') {
       if (scryfallCards && scryfallCards.length > 0) {
         // EDHREC card name (usually just front face for double-faced cards)
         const edhrecCardName = card.name.toLowerCase().trim();
-        
+
         // Find matching card by comparing front face names
         // This handles double-faced cards where EDHREC has "Chandra, Fire of Kaladesh"
         // but Scryfall has "Chandra, Fire of Kaladesh // Chandra, Roaring Flame"
-        const scryfallCard = scryfallCards.find(c => {
-          const scryfallFrontFace = getScryfallFrontFaceName(c).toLowerCase().trim();
-          return scryfallFrontFace === edhrecCardName;
-        }) || scryfallCards.find(c => {
-          // Fallback: exact name match
-          return c.name.toLowerCase() === edhrecCardName;
-        }) || scryfallCards[0]; // Last resort: first result
+        const scryfallCard =
+          scryfallCards.find(c => {
+            const scryfallFrontFace = getScryfallFrontFaceName(c)
+              .toLowerCase()
+              .trim();
+            return scryfallFrontFace === edhrecCardName;
+          }) ||
+          scryfallCards.find(c => {
+            // Fallback: exact name match
+            return c.name.toLowerCase() === edhrecCardName;
+          }) ||
+          scryfallCards[0]; // Last resort: first result
 
         // Merge EDHREC data with Scryfall data
         cardsWithDetails.push({
@@ -196,7 +214,9 @@ async function fetchCardDetails(cards, type = 'cards') {
     }
   }
 
-  console.log(`✅ Successfully fetched ${cardsWithDetails.length}/${cards.length} ${type} card details`);
+  console.log(
+    `✅ Successfully fetched ${cardsWithDetails.length}/${cards.length} ${type} card details`
+  );
 
   return cardsWithDetails;
 }
