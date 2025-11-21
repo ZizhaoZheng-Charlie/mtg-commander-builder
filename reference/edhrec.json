@@ -1,0 +1,350 @@
+[
+  {
+    "background_chooser": true,
+    "banned": false,
+    "cardmarket_id": 659225,
+    "cmc": 5,
+    "color_identity": ["R"],
+    "combo_url": "combos/karlach-fury-of-avernus",
+    "game_changer": false,
+    "id": "775480ed-f574-40cb-bd9b-21102eaaff63",
+    "image_uri": "https://cards.scryfall.io/normal/front/7/7/775480ed-f574-40cb-bd9b-21102eaaff63.jpg?1674136654",
+    "image_uris": [
+      "https://cards.scryfall.io/normal/front/7/7/775480ed-f574-40cb-bd9b-21102eaaff63.jpg?1674136654"
+    ],
+    "layout": "normal",
+    "legal_commander": true,
+    "legal_companion": false,
+    "legal_partner": false,
+    "mana_cost": "{4}{R}",
+    "name": "Karlach, Fury of Avernus",
+    "names": ["Karlach, Fury of Avernus"],
+    "new": false,
+    "oracle_id": "037355be-71e7-4866-80a6-80352c304970",
+    "oracle_text": "Whenever you attack, if it's the first combat phase of the turn, untap all attacking creatures. They gain first strike until end of turn. After this phase, there is an additional combat phase.\nChoose a Background (You can have a Background as a second commander.)",
+    "power": "5",
+    "precon": false,
+    "prices": {
+      "cardhoarder": {
+        "price": 6.87,
+        "slug": "100396",
+        "url": "https://www.cardhoarder.com/cards/100396?affiliate_id=edhrec"
+      },
+      "cardkingdom": {
+        "price": 17.99,
+        "slug": "mtg/commander-legends-battle-for-baldurs-gate-variants/karlach-fury-of-avernus-showcase",
+        "url": "https://www.cardkingdom.com/mtg/commander-legends-battle-for-baldurs-gate-variants/karlach-fury-of-avernus-showcase?partner=edhrec&utm_source=edhrec&utm_medium=affiliate&utm_campaign=edhrec"
+      },
+      "cardmarket": {
+        "price": 10.96,
+        "url": "https://www.cardmarket.com/en/Magic/Products/Search?searchString=Karlach%2C+Fury+of+Avernus"
+      },
+      "face2face": {
+        "price": 17.78,
+        "slug": "Karlach, Fury of Avernus",
+        "url": "https://www.facetofacegames.com/search?q=Karlach, Fury of Avernus"
+      },
+      "manapool": {
+        "price": 9.83,
+        "slug": "clb/400/karlach-fury-of-avernus"
+      },
+      "mtgstocks": {
+        "price": 11.08,
+        "slug": "75865-karlach-fury-of-avernus-showcase",
+        "url": "https://www.mtgstocks.com/prints/75865-karlach-fury-of-avernus-showcase"
+      },
+      "scg": {
+        "price": 12.99,
+        "slug": "karlach-fury-of-avernus-sgl-mtg-clb3-507-enf"
+      },
+      "tcgl": {
+        "price": 330,
+        "slug": "clb_400_en"
+      },
+      "tcgplayer": {
+        "price": 11,
+        "slug": "272800/magic-commander-legends-battle-for-baldurs-gate-karlach-fury-of-avernus-showcase",
+        "url": "https://www.tcgplayer.com/product/272800/magic-commander-legends-battle-for-baldurs-gate-karlach-fury-of-avernus-showcase"
+      }
+    },
+    "primary_type": "Creature",
+    "rarity": "mythic",
+    "released_at": "2022-06-10",
+    "salt": 0.608955223880597,
+    "toughness": "4",
+    "type": "Legendary Creature — Tiefling Barbarian",
+    "scryfall_uri": "https://scryfall.com/card/clb/186/karlach-fury-of-avernus?utm_source=api",
+    "sets": ["clb", "sld"],
+    "spellbook_uri": "https://commanderspellbook.com/search/?q=Karlach%2C%20Fury%20of%20Avernus",
+    "spoiled_at": "2022-06-10",
+    "subtypes": ["Tiefling", "Barbarian"],
+    "types": ["Creature"],
+    "unique_artwork": [
+      {
+        "artist": "Billy Christian",
+        "collector_number": "507",
+        "set": "clb",
+        "set_name": "Commander Legends: Battle for Baldur's Gate",
+        "image_uris": [
+          "https://cards.scryfall.io/normal/front/2/3/231621a3-01dc-41af-827a-94aaa63179ae.jpg?1681412635"
+        ]
+      },
+      {
+        "artist": "Mila Pesic",
+        "collector_number": "1802",
+        "set": "sld",
+        "set_name": "Secret Lair Drop",
+        "image_uris": [
+          "https://cards.scryfall.io/normal/front/4/7/47a6c502-08ba-4c0d-aee9-98ce40058227.jpg?1723181234"
+        ]
+      },
+      {
+        "artist": "Justine Jones",
+        "collector_number": "400",
+        "set": "clb",
+        "set_name": "Commander Legends: Battle for Baldur's Gate",
+        "image_uris": [
+          "https://cards.scryfall.io/normal/front/a/3/a3b123fa-c232-4bb4-ba9d-2cde4a0eef99.jpg?1674138553"
+        ]
+      }
+    ],
+    "unofficial": false,
+    "url": "karlach-fury-of-avernus",
+    "weird": false
+  },
+  {
+    "banned": false,
+    "cardmarket_id": 857503,
+    "cmc": 3.0,
+    "color_identity": ["R", "G"],
+    "combo_url": "combos/abby-merciless-soldier",
+    "game_changer": false,
+    "id": "28e11b59-c677-4235-a377-18921c5131f0",
+    "image_uri": "https://cards.scryfall.io/normal/front/2/8/28e11b59-c677-4235-a377-18921c5131f0.jpg?1761372698",
+    "image_uris": [
+      "https://cards.scryfall.io/normal/front/2/8/28e11b59-c677-4235-a377-18921c5131f0.jpg?1761372698"
+    ],
+    "layout": "normal",
+    "legal_commander": true,
+    "legal_companion": false,
+    "legal_partner": true,
+    "mana_cost": "{1}{R}{G}",
+    "name": "Abby, Merciless Soldier",
+    "names": ["Abby, Merciless Soldier"],
+    "new": false,
+    "oracle_id": "e05efd01-0202-4bd6-bac6-c6210819d463",
+    "oracle_text": "When you cast this spell, create a number of 1/1 black Fungus Zombie creature tokens named Cordyceps Infected equal to the amount of mana spent to cast it.\nAbby enters under the control of an opponent of your choice.\nPartner\u2014Survivors (You can have two commanders if both have this ability.)",
+    "power": "4",
+    "precon": false,
+    "prices": {
+      "manapool": {
+        "price": 10.31,
+        "slug": "sld/2202/abby-merciless-soldier"
+      },
+      "mtgstocks": {
+        "price": 9.66,
+        "slug": "133869-abby-merciless-soldier",
+        "url": "https://www.mtgstocks.com/prints/133869-abby-merciless-soldier"
+      },
+      "tcgl": {
+        "price": 238.0,
+        "slug": "sld_2202_en"
+      },
+      "tcgplayer": {
+        "price": 10.49,
+        "slug": "658408/magic-secret-lair-drop-series-abby-merciless-soldier",
+        "url": "https://www.tcgplayer.com/product/658408/magic-secret-lair-drop-series-abby-merciless-soldier"
+      }
+    },
+    "primary_type": "Creature",
+    "rarity": "mythic",
+    "released_at": "2025-10-27",
+    "salt": 0,
+    "toughness": "4",
+    "type": "Legendary Creature \u2014 Human Survivor",
+    "scryfall_uri": "https://scryfall.com/card/sld/2202/abby-merciless-soldier?utm_source=api",
+    "sets": ["sld"],
+    "spellbook_uri": "https://commanderspellbook.com/search/?q=Abby%2C%20Merciless%20Soldier",
+    "spoiled_at": "2025-09-27",
+    "subtypes": ["Human", "Survivor"],
+    "types": ["Creature"],
+    "universes_beyond": true,
+    "unique_artwork": [
+      {
+        "artist": "Wayne Wu",
+        "collector_number": "2202",
+        "set": "sld",
+        "set_name": "Secret Lair Drop",
+        "image_uris": [
+          "https://cards.scryfall.io/normal/front/2/8/28e11b59-c677-4235-a377-18921c5131f0.jpg?1761372698"
+        ]
+      }
+    ],
+    "unofficial": false,
+    "url": "abby-merciless-soldier",
+    "weird": false
+  },
+  {
+    "banned": false,
+    "cardmarket_id": 857504,
+    "cmc": 3,
+    "color_identity": ["B", "R"],
+    "combo_url": "combos/ellie-vengeful-hunter",
+    "game_changer": false,
+    "id": "dd0b3ace-91aa-46b7-8265-b8bc22dff5f7",
+    "image_uri": "https://cards.scryfall.io/normal/front/d/d/dd0b3ace-91aa-46b7-8265-b8bc22dff5f7.jpg?1761372687",
+    "image_uris": [
+      "https://cards.scryfall.io/normal/front/d/d/dd0b3ace-91aa-46b7-8265-b8bc22dff5f7.jpg?1761372687"
+    ],
+    "layout": "normal",
+    "legal_commander": true,
+    "legal_companion": false,
+    "legal_partner": true,
+    "mana_cost": "{1}{B}{R}",
+    "name": "Ellie, Vengeful Hunter",
+    "names": ["Ellie, Vengeful Hunter"],
+    "new": false,
+    "oracle_id": "e619cb66-8c0d-408a-829c-6f02bf25fd0f",
+    "oracle_text": "Pay 2 life, Sacrifice another creature: Ellie deals 2 damage to target player and gains indestructible until end of turn.\nPartner—Survivors (You can have two commanders if both have this ability.)",
+    "power": "3",
+    "precon": false,
+    "prices": {
+      "tcgplayer": {
+        "price": 6.72,
+        "slug": "658410/magic-secret-lair-drop-series-ellie-vengeful-hunter",
+        "url": "https://www.tcgplayer.com/product/658410/magic-secret-lair-drop-series-ellie-vengeful-hunter"
+      }
+    },
+    "primary_type": "Creature",
+    "rarity": "mythic",
+    "released_at": "2025-10-27",
+    "salt": 0,
+    "toughness": "1",
+    "type": "Legendary Creature — Human Survivor",
+    "scryfall_uri": "https://scryfall.com/card/sld/2203/ellie-vengeful-hunter?utm_source=api",
+    "sets": ["sld"],
+    "spellbook_uri": "https://commanderspellbook.com/search/?q=Ellie%2C%20Vengeful%20Hunter",
+    "spoiled_at": "2025-09-27",
+    "subtypes": ["Human", "Survivor"],
+    "types": ["Creature"],
+    "universes_beyond": true,
+    "unique_artwork": [
+      {
+        "artist": "Irvin Rodriguez",
+        "collector_number": "2203",
+        "set": "sld",
+        "set_name": "Secret Lair Drop",
+        "image_uris": [
+          "https://cards.scryfall.io/normal/front/d/d/dd0b3ace-91aa-46b7-8265-b8bc22dff5f7.jpg?1761372687"
+        ]
+      }
+    ],
+    "unofficial": false,
+    "url": "ellie-vengeful-hunter",
+    "weird": false
+  },
+  {
+    "banned": false,
+    "cardmarket_id": 450968,
+    "cmc": 5,
+    "color_identity": ["G", "U"],
+    "combo_url": "combos/keruga-the-macrosage",
+    "game_changer": false,
+    "id": "a90ee952-de7a-420f-993c-a38db89bc8ac",
+    "image_uri": "https://cards.scryfall.io/normal/front/a/9/a90ee952-de7a-420f-993c-a38db89bc8ac.jpg?1739702511",
+    "image_uris": [
+      "https://cards.scryfall.io/normal/front/a/9/a90ee952-de7a-420f-993c-a38db89bc8ac.jpg?1739702511"
+    ],
+    "layout": "normal",
+    "legal_commander": true,
+    "legal_companion": true,
+    "legal_partner": false,
+    "mana_cost": "{3}{G/U}{G/U}",
+    "name": "Keruga, the Macrosage",
+    "names": ["Keruga, the Macrosage"],
+    "new": false,
+    "oracle_id": "ca5121b2-e6d9-40bc-a2d2-05852c4efbe8",
+    "oracle_text": "Companion — Your starting deck contains only cards with mana value 3 or greater and land cards. (If this card is your chosen companion, you may put it into your hand from outside the game for {3} as a sorcery.)\nWhen Keruga enters, draw a card for each other permanent you control with mana value 3 or greater.",
+    "power": "5",
+    "precon": false,
+    "prices": {
+      "cardhoarder": {
+        "price": 0.02,
+        "slug": "109318",
+        "url": "https://www.cardhoarder.com/cards/109318?affiliate_id=edhrec"
+      },
+      "cardkingdom": {
+        "price": 0.49,
+        "slug": "mtg/multiverse-legends/keruga-the-macrosage-0113-foil-etched-foil",
+        "url": "https://www.cardkingdom.com/mtg/multiverse-legends/keruga-the-macrosage-0113-foil-etched-foil?partner=edhrec&utm_source=edhrec&utm_medium=affiliate&utm_campaign=edhrec"
+      },
+      "cardmarket": {
+        "price": 0.14,
+        "url": "https://www.cardmarket.com/en/Magic/Products/Search?searchString=Keruga%2C+the+Macrosage"
+      },
+      "face2face": {
+        "price": 0.35,
+        "slug": "Keruga, the Macrosage",
+        "url": "https://www.facetofacegames.com/search?q=Keruga, the Macrosage"
+      },
+      "manapool": {
+        "price": 0.15,
+        "slug": "mul/48/keruga-the-macrosage"
+      },
+      "mtgstocks": {
+        "price": 0.23,
+        "slug": "115849-keruga-the-macrosage-white-border",
+        "url": "https://www.mtgstocks.com/prints/115849-keruga-the-macrosage-white-border"
+      },
+      "scg": {
+        "price": 0.49,
+        "slug": "keruga-the-macrosage-sgl-mtg-mul-048-enn"
+      },
+      "tcgl": {
+        "price": 14,
+        "slug": "mul_48_en"
+      },
+      "tcgplayer": {
+        "price": 0.3,
+        "slug": "563272/magic-mystery-booster-2-keruga-the-macrosage-white-border",
+        "url": "https://www.tcgplayer.com/product/563272/magic-mystery-booster-2-keruga-the-macrosage-white-border"
+      }
+    },
+    "primary_type": "Creature",
+    "rarity": "rare",
+    "released_at": "2020-04-24",
+    "salt": 0.3125,
+    "tags": ["draw"],
+    "toughness": "4",
+    "type": "Legendary Creature — Dinosaur Hippo",
+    "scryfall_uri": "https://scryfall.com/card/iko/225/keruga-the-macrosage?utm_source=api",
+    "sets": ["mb2", "iko"],
+    "spellbook_uri": "https://commanderspellbook.com/search/?q=Keruga%2C%20the%20Macrosage",
+    "spoiled_at": "2020-04-24",
+    "subtypes": ["Dinosaur", "Hippo"],
+    "types": ["Creature"],
+    "unique_artwork": [
+      {
+        "artist": "Dan Murayama Scott",
+        "collector_number": "354",
+        "set": "iko",
+        "set_name": "Ikoria: Lair of Behemoths",
+        "image_uris": [
+          "https://cards.scryfall.io/normal/front/1/2/1206f4fc-6ebf-4205-90d3-1cb3a9caaa82.jpg?1604782704"
+        ]
+      },
+      {
+        "artist": "Denis Medri",
+        "collector_number": "48",
+        "set": "mul",
+        "set_name": "Multiverse Legends",
+        "image_uris": [
+          "https://cards.scryfall.io/normal/front/8/1/814cd870-a4da-4987-a69b-5ba6cee136c1.jpg?1682347475"
+        ]
+      }
+    ],
+    "unofficial": false,
+    "url": "keruga-the-macrosage",
+    "weird": false
+  }
+]

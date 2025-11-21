@@ -1,0 +1,588 @@
+{
+    "banned": false,
+    "cardmarket_id": 834083,
+    "cmc": 1,
+    "color_identity": [],
+    "combo_url": "combos/sol-ring",
+    "game_changer": false,
+    "id": "ee6e5a35-fe21-4dee-b0ef-a8f2841511ad",
+    "image_uri": "https://cards.scryfall.io/normal/front/e/e/ee6e5a35-fe21-4dee-b0ef-a8f2841511ad.jpg?1752944480",
+    "image_uris": [
+      "https://cards.scryfall.io/normal/front/e/e/ee6e5a35-fe21-4dee-b0ef-a8f2841511ad.jpg?1752944480"
+    ],
+    "layout": "normal",
+    "legal_commander": false,
+    "legal_companion": false,
+    "legal_partner": false,
+    "mana_cost": "{1}",
+    "name": "Sol Ring",
+    "names": [
+      "Sol Ring"
+    ],
+    "new": false,
+    "oracle_id": "6ad8011d-3471-4369-9d68-b264cc027487",
+    "oracle_text": "{T}: Add {C}{C}.",
+    "precon": false,
+    "prices": {
+      "cardhoarder": {
+        "price": 0.04,
+        "slug": "104130",
+        "url": "https://www.cardhoarder.com/cards/104130?affiliate_id=edhrec"
+      },
+      "cardkingdom": {
+        "price": 1.99,
+        "slug": "mtg/starter-commander-decks/sol-ring",
+        "url": "https://www.cardkingdom.com/mtg/starter-commander-decks/sol-ring?partner=edhrec&utm_source=edhrec&utm_medium=affiliate&utm_campaign=edhrec"
+      },
+      "cardmarket": {
+        "price": 0.65,
+        "url": "https://www.cardmarket.com/en/Magic/Products/Search?searchString=Sol+Ring"
+      },
+      "face2face": {
+        "price": 92.51,
+        "slug": "Sol Ring // Sol Ring",
+        "url": "https://www.facetofacegames.com/search?q=Sol Ring // Sol Ring"
+      },
+      "manapool": {
+        "price": 0.95,
+        "slug": "tdc/106/sol-ring"
+      },
+      "mtgstocks": {
+        "price": 1.18,
+        "slug": "123712-sol-ring-0057",
+        "url": "https://www.mtgstocks.com/prints/123712-sol-ring-0057"
+      },
+      "scg": {
+        "price": 1.99,
+        "slug": "sol-ring-sgl-mtg-scd-276-enn"
+      },
+      "tcgl": {
+        "price": 40,
+        "slug": "fic_358_en"
+      },
+      "tcgplayer": {
+        "price": 1.28,
+        "slug": "615157/magic-commander-aetherdrift-sol-ring-0057",
+        "url": "https://www.tcgplayer.com/product/615157/magic-commander-aetherdrift-sol-ring-0057"
+      }
+    },
+    "primary_type": "Artifact",
+    "rarity": "uncommon",
+    "released_at": "1993-12-01",
+    "salt": 1.46268656716418,
+    "tags": [
+      "ramp"
+    ],
+    "type": "Artifact",
+    "scryfall_uri": "https://scryfall.com/card/eoc/57/sol-ring?utm_source=api",
+    "sets": [
+      "tle",
+      "eoc",
+      "fic",
+      "tdc",
+      "drc",
+      "fdc",
+      "dsc",
+      "blc",
+      "mb2",
+      "m3c",
+      "otc",
+      "pip",
+      "mkc",
+      "lcc",
+      "who",
+      "woc",
+      "cmm",
+      "ltc",
+      "moc",
+      "onc",
+      "scd",
+      "brc",
+      "40k",
+      "dmc",
+      "clb",
+      "ncc",
+      "nec",
+      "voc",
+      "mic",
+      "afc",
+      "c21",
+      "khc",
+      "cmr",
+      "znc",
+      "c20",
+      "sld",
+      "c19",
+      "c18",
+      "c17",
+      "c16",
+      "c15",
+      "c14",
+      "c13",
+      "cmd",
+      "3ed",
+      "2ed"
+    ],
+    "spellbook_uri": "https://commanderspellbook.com/search/?q=Sol%20Ring",
+    "spoiled_at": "1993-12-01",
+    "subtypes": [],
+    "types": [
+      "Artifact"
+    ],
+    "unique_artwork": [
+      {
+        "artist": "Mike Bierek",
+        "collector_number": "12",
+        "set": "v10",
+        "set_name": "From the Vault: Relics",
+        "image_uris": [
+          "https://cards.scryfall.io/normal/front/0/7/073bfdca-d7b8-4f4b-93f3-6e7c44bc0b0a.jpg?1567827553"
+        ]
+      },
+      {
+        "artist": "Kekai Kotaki",
+        "collector_number": "245",
+        "set": "who",
+        "set_name": "Doctor Who",
+        "image_uris": [
+          "https://cards.scryfall.io/normal/front/0/f/0f44a54b-512e-45ef-80ee-7982d2eaf762.jpg?1696636972"
+        ]
+      },
+      {
+        "artist": "Anastasia Balakchina",
+        "collector_number": "410",
+        "set": "ltc",
+        "set_name": "Tales of Middle-earth Commander",
+        "image_uris": [
+          "https://cards.scryfall.io/normal/front/1/3/13788423-db82-4e76-83ad-3f812a4d547a.jpg?1740417465"
+        ]
+      },
+      {
+        "artist": "Lē Yamamura",
+        "collector_number": "913",
+        "set": "sld",
+        "set_name": "Secret Lair Drop",
+        "image_uris": [
+          "https://cards.scryfall.io/normal/front/1/6/16a2c470-b2b8-4633-89b1-7b936bcaff8d.jpg?1763472256"
+        ]
+      },
+      {
+        "artist": "Roberta Ingranata",
+        "collector_number": "1988",
+        "set": "sld",
+        "set_name": "Secret Lair Drop",
+        "image_uris": [
+          "https://cards.scryfall.io/normal/front/1/8/180000d4-6844-4292-b768-b1f74a3b8b2d.jpg?1757344076"
+        ]
+      },
+      {
+        "artist": "Souther Salazar",
+        "collector_number": "19",
+        "set": "slc",
+        "set_name": "Secret Lair Countdown",
+        "image_uris": [
+          "https://cards.scryfall.io/normal/front/1/9/193a5688-9e9b-48f4-9904-53134ec73c97.jpg?1763460307"
+        ]
+      },
+      {
+        "artist": "Piotr Dura",
+        "collector_number": "359",
+        "set": "fic",
+        "set_name": "Final Fantasy Commander",
+        "image_uris": [
+          "https://cards.scryfall.io/normal/front/1/a/1abcafa9-0f27-482f-95a9-24520f0106b8.jpg?1748705468"
+        ]
+      },
+      {
+        "artist": "Dan Frazier",
+        "collector_number": "1074",
+        "set": "sld",
+        "set_name": "Secret Lair Drop",
+        "image_uris": [
+          "https://cards.scryfall.io/normal/front/2/7/27ea0aa3-30c0-4eb4-b262-ce70781277ce.jpg?1694576439"
+        ]
+      },
+      {
+        "artist": "Anna Steinbauer",
+        "collector_number": "1734",
+        "set": "sld",
+        "set_name": "Secret Lair Drop",
+        "image_uris": [
+          "https://cards.scryfall.io/normal/front/2/8/2824f3fb-82e6-43bd-babf-da6777a5b075.jpg?1729273449"
+        ]
+      },
+      {
+        "artist": "Teodora Dumitriu",
+        "collector_number": "249",
+        "set": "40k",
+        "set_name": "Warhammer 40,000 Commander",
+        "image_uris": [
+          "https://cards.scryfall.io/normal/front/3/3/33773feb-5b49-4d44-adca-93b99009acc0.jpg?1673310345"
+        ]
+      },
+      {
+        "artist": "6VCR",
+        "collector_number": "910",
+        "set": "sld",
+        "set_name": "Secret Lair Drop",
+        "image_uris": [
+          "https://cards.scryfall.io/normal/front/3/e/3e10052f-b3e5-4a2c-b268-9a12ce354eb9.jpg?1741347763"
+        ]
+      },
+      {
+        "artist": "Joseph Meehan",
+        "collector_number": "7",
+        "set": "cc1",
+        "set_name": "Commander Collection: Green",
+        "image_uris": [
+          "https://cards.scryfall.io/normal/front/4/d/4d76d52c-7dd0-4d00-af84-fedae29590db.jpg?1610161897"
+        ]
+      },
+      {
+        "artist": "Kekai Kotaki",
+        "collector_number": "250",
+        "set": "40k",
+        "set_name": "Warhammer 40,000 Commander",
+        "image_uris": [
+          "https://cards.scryfall.io/normal/front/5/0/508b2c62-a344-4897-a3a4-4f0555627fc1.jpg?1673310353"
+        ]
+      },
+      {
+        "artist": "L J Koh",
+        "collector_number": "284",
+        "set": "ltc",
+        "set_name": "Tales of Middle-earth Commander",
+        "image_uris": [
+          "https://cards.scryfall.io/normal/front/5/8/5805f64c-dd88-4e94-8f0a-a01dae67e3ba.jpg?1687735516"
+        ]
+      },
+      {
+        "artist": "Bardo Bread",
+        "collector_number": "1664",
+        "set": "sld",
+        "set_name": "Secret Lair Drop",
+        "image_uris": [
+          "https://cards.scryfall.io/normal/front/5/b/5b9fe249-9bda-462b-922c-f01c904c233a.jpg?1739789144"
+        ]
+      },
+      {
+        "artist": "Erikas Perl",
+        "collector_number": "409",
+        "set": "ltc",
+        "set_name": "Tales of Middle-earth Commander",
+        "image_uris": [
+          "https://cards.scryfall.io/normal/front/6/0/60bc8cfc-8f68-4ec7-92a7-98380d92f69e.jpg?1740417457"
+        ]
+      },
+      {
+        "artist": "Narendra Bintara Adi",
+        "collector_number": "1604",
+        "set": "sld",
+        "set_name": "Secret Lair Drop",
+        "image_uris": [
+          "https://cards.scryfall.io/normal/front/6/5/65b145dd-8529-4bff-b381-b4be53f24b54.jpg?1724956452"
+        ]
+      },
+      {
+        "artist": "Kekai Kotaki",
+        "collector_number": "267",
+        "set": "otc",
+        "set_name": "Outlaws of Thunder Junction Commander",
+        "image_uris": [
+          "https://cards.scryfall.io/normal/front/6/c/6c5c9437-3d99-4a7c-8255-9acdcb1acc40.jpg?1712354902"
+        ]
+      },
+      {
+        "artist": "Ejiwa \"Edge\" Ebenebe",
+        "collector_number": "1905",
+        "set": "sld",
+        "set_name": "Secret Lair Drop",
+        "image_uris": [
+          "https://cards.scryfall.io/normal/front/7/4/74109c41-d1e7-4108-bed1-3d9110d5e7d2.jpg?1745844348"
+        ]
+      },
+      {
+        "artist": "Mark Poole",
+        "collector_number": "703",
+        "set": "cmm",
+        "set_name": "Commander Masters",
+        "image_uris": [
+          "https://cards.scryfall.io/normal/front/7/4/7454e0cc-98c2-48a1-b2c9-49908d2aedcc.jpg?1721825638"
+        ]
+      },
+      {
+        "artist": "Randy Gallegos",
+        "collector_number": "408",
+        "set": "ltc",
+        "set_name": "Tales of Middle-earth Commander",
+        "image_uris": [
+          "https://cards.scryfall.io/normal/front/7/a/7a8db21f-722b-4a07-985b-8d25a0b0006a.jpg?1740417081"
+        ]
+      },
+      {
+        "artist": "Leon Tukker",
+        "collector_number": "106",
+        "set": "tdc",
+        "set_name": "Tarkir: Dragonstorm Commander",
+        "image_uris": [
+          "https://cards.scryfall.io/normal/front/7/b/7b0ccfd4-f118-4497-9c5a-54cf12000e16.jpg?1743206094"
+        ]
+      },
+      {
+        "artist": "Thomas Zenteno",
+        "collector_number": "249",
+        "set": "sld",
+        "set_name": "Secret Lair Drop",
+        "image_uris": [
+          "https://cards.scryfall.io/normal/front/7/b/7bf22be9-bf1a-48ec-a825-d19504f9dfcc.jpg?1682694102"
+        ]
+      },
+      {
+        "artist": "Lindsey Look",
+        "collector_number": "1696",
+        "set": "sld",
+        "set_name": "Secret Lair Drop",
+        "image_uris": [
+          "https://cards.scryfall.io/normal/front/7/d/7d698bdd-b485-409d-b03e-c7c7d3fe9a92.jpg?1733142443"
+        ]
+      },
+      {
+        "artist": "John Stanko",
+        "collector_number": "94",
+        "set": "dsc",
+        "set_name": "Duskmourn: House of Horror Commander",
+        "image_uris": [
+          "https://cards.scryfall.io/normal/front/8/2/82f1a8a3-7fdb-49a3-9649-b5c0b4755cd5.jpg?1726284526"
+        ]
+      },
+      {
+        "artist": "Nathan Jurevicius",
+        "collector_number": "2315",
+        "set": "sld",
+        "set_name": "Secret Lair Drop",
+        "image_uris": [
+          "https://cards.scryfall.io/normal/front/8/3/835df088-5860-46b1-9c4d-3607d0293963.jpg?1762326283"
+        ]
+      },
+      {
+        "artist": "Dani Pendergast",
+        "collector_number": "1494",
+        "set": "sld",
+        "set_name": "Secret Lair Drop",
+        "image_uris": [
+          "https://cards.scryfall.io/normal/front/8/5/858e0b83-7927-4e34-ae25-6ad7a787ad97.jpg?1733155020"
+        ]
+      },
+      {
+        "artist": "Volkan Baǵa",
+        "collector_number": "24",
+        "set": "mps",
+        "set_name": "Kaladesh Inventions",
+        "image_uris": [
+          "https://cards.scryfall.io/normal/front/8/8/880711b0-da06-4c4f-aa4e-1be58fc0bc67.jpg?1562923705"
+        ]
+      },
+      {
+        "artist": "Andrea Tentori Montalto",
+        "collector_number": "356",
+        "set": "fic",
+        "set_name": "Final Fantasy Commander",
+        "image_uris": [
+          "https://cards.scryfall.io/normal/front/8/f/8fb860f9-3729-436e-adfb-c98c2a389d5d.jpg?1748705457"
+        ]
+      },
+      {
+        "artist": "Grace Zhu",
+        "collector_number": "358",
+        "set": "fic",
+        "set_name": "Final Fantasy Commander",
+        "image_uris": [
+          "https://cards.scryfall.io/normal/front/9/a/9a34ac23-e318-4c0b-ab4c-e1eaa0e2547e.jpg?1748705465"
+        ]
+      },
+      {
+        "artist": "Aaron J. Riley",
+        "collector_number": "767",
+        "set": "pip",
+        "set_name": "Fallout",
+        "image_uris": [
+          "https://cards.scryfall.io/normal/front/a/8/a8260eef-5ff2-4058-8aa5-469b402eaf65.jpg?1708745297"
+        ]
+      },
+      {
+        "artist": "Bill McConkey",
+        "collector_number": "912",
+        "set": "sld",
+        "set_name": "Secret Lair Drop",
+        "image_uris": [
+          "https://cards.scryfall.io/normal/front/a/b/ab696cab-2d83-444f-8068-dbf071c75de9.jpg?1761038482"
+        ]
+      },
+      {
+        "artist": "Yeong-Hao Han",
+        "collector_number": "7",
+        "set": "cc2",
+        "set_name": "Commander Collection: Black",
+        "image_uris": [
+          "https://cards.scryfall.io/normal/front/a/c/acce65cc-9093-45a6-8c86-97edce545050.jpg?1651951840"
+        ]
+      },
+      {
+        "artist": "AKQA",
+        "collector_number": "359",
+        "set": "pip",
+        "set_name": "Fallout",
+        "image_uris": [
+          "https://cards.scryfall.io/normal/front/a/f/af88e4e8-b694-4ec0-8885-701ea30bf84c.jpg?1708743665"
+        ]
+      },
+      {
+        "artist": "Aya Kakeda",
+        "collector_number": "1833",
+        "set": "sld",
+        "set_name": "Secret Lair Drop",
+        "image_uris": [
+          "https://cards.scryfall.io/normal/front/b/1/b162b131-5612-4605-9de8-a5731eeac37e.jpg?1734699751"
+        ]
+      },
+      {
+        "artist": "Barbara Rosiak",
+        "collector_number": "316",
+        "set": "tle",
+        "set_name": "Avatar: The Last Airbender Eternal",
+        "image_uris": [
+          "https://cards.scryfall.io/normal/front/c/1/c1f93f78-645b-4f21-a80b-5542f3328111.jpg?1761746588"
+        ]
+      },
+      {
+        "artist": "Mark Tedin",
+        "collector_number": "269",
+        "set": "lea",
+        "set_name": "Limited Edition Alpha",
+        "image_uris": [
+          "https://cards.scryfall.io/normal/front/c/4/c4300d24-1cae-4dd5-be7e-38cc677cf5bd.jpg?1559591399"
+        ]
+      },
+      {
+        "artist": "Todd Nauck",
+        "collector_number": "1993",
+        "set": "sld",
+        "set_name": "Secret Lair Drop",
+        "image_uris": [
+          "https://cards.scryfall.io/normal/front/c/5/c5430a1d-a575-4853-93f2-635c327eea15.jpg?1757341950"
+        ]
+      },
+      {
+        "artist": "Piotr Dura",
+        "collector_number": "57",
+        "set": "drc",
+        "set_name": "Aetherdrift Commander",
+        "image_uris": [
+          "https://cards.scryfall.io/normal/front/c/9/c946b161-0e4f-4c0a-a075-cdcf05504d0b.jpg?1738355575"
+        ]
+      },
+      {
+        "artist": "Kevin Glint",
+        "collector_number": "357",
+        "set": "fic",
+        "set_name": "Final Fantasy Commander",
+        "image_uris": [
+          "https://cards.scryfall.io/normal/front/d/1/d105068a-d4f1-4971-b5a0-72806a798497.jpg?1748705460"
+        ]
+      },
+      {
+        "artist": "Izzy",
+        "collector_number": "2063",
+        "set": "sld",
+        "set_name": "Secret Lair Drop",
+        "image_uris": [
+          "https://cards.scryfall.io/normal/front/d/3/d3c75597-aa63-40c5-960e-2131d2891d09.jpg?1748958319"
+        ]
+      },
+      {
+        "artist": "Nana Qi",
+        "collector_number": "1512",
+        "set": "sld",
+        "set_name": "Secret Lair Drop",
+        "image_uris": [
+          "https://cards.scryfall.io/normal/front/d/7/d74a72a2-d46a-41c2-a400-70571197b020.jpg?1733255849",
+          "https://cards.scryfall.io/normal/back/d/7/d74a72a2-d46a-41c2-a400-70571197b020.jpg?1733255849"
+        ]
+      },
+      {
+        "artist": "Lucas Terryn",
+        "collector_number": "252",
+        "set": "40k",
+        "set_name": "Warhammer 40,000 Commander",
+        "image_uris": [
+          "https://cards.scryfall.io/normal/front/e/3/e3450882-d791-4172-b02a-ee7fdb36acfc.jpg?1673310369"
+        ]
+      },
+      {
+        "artist": "Lauren YS",
+        "collector_number": "1011",
+        "set": "sld",
+        "set_name": "Secret Lair Drop",
+        "image_uris": [
+          "https://cards.scryfall.io/normal/front/e/3/e3b2235b-6c18-436e-9d80-4a82ce0cac14.jpg?1682694023"
+        ]
+      },
+      {
+        "artist": "Mark Tedin",
+        "collector_number": "7",
+        "set": "pf19",
+        "set_name": "MagicFest 2019",
+        "image_uris": [
+          "https://cards.scryfall.io/normal/front/e/5/e5ba8c01-b6f5-486d-b300-cbae2c2b5edf.jpg?1571172829"
+        ]
+      },
+      {
+        "artist": "Oleg Shekhovtsov",
+        "collector_number": "251",
+        "set": "40k",
+        "set_name": "Warhammer 40,000 Commander",
+        "image_uris": [
+          "https://cards.scryfall.io/normal/front/e/b/ebfcda26-1f28-4d60-bc7b-8c0bafc6b132.jpg?1673310361"
+        ]
+      },
+      {
+        "artist": "Steven Belledin",
+        "collector_number": "57",
+        "set": "eoc",
+        "set_name": "Edge of Eternities Commander",
+        "image_uris": [
+          "https://cards.scryfall.io/normal/front/e/e/ee6e5a35-fe21-4dee-b0ef-a8f2841511ad.jpg?1752944480"
+        ]
+      },
+      {
+        "artist": "Evan Stanley",
+        "collector_number": "2093",
+        "set": "sld",
+        "set_name": "Secret Lair Drop",
+        "image_uris": [
+          "https://cards.scryfall.io/normal/front/f/1/f19a0013-ebf9-4472-a2ed-462c59d212a5.jpg?1752436193"
+        ]
+      },
+      {
+        "artist": "Rémi Jacquot",
+        "collector_number": "56",
+        "set": "drc",
+        "set_name": "Aetherdrift Commander",
+        "image_uris": [
+          "https://cards.scryfall.io/normal/front/f/e/fe202721-c5be-46de-9fb3-ac18c699e10d.jpg?1738355573"
+        ]
+      },
+      {
+        "artist": "Volkan Baǵa",
+        "collector_number": "129",
+        "set": "blc",
+        "set_name": "Bloomburrow Commander",
+        "image_uris": [
+          "https://cards.scryfall.io/normal/front/f/f/fff440c0-7e6a-46c2-9989-f1b5af20fd44.jpg?1721428809"
+        ]
+      }
+    ],
+    "unofficial": false,
+    "url": "sol-ring",
+    "weird": false
+  }

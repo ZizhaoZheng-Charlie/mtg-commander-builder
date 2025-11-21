@@ -1,0 +1,15 @@
+# Build output
+dist
+dist-electron
+release
+node_modules
+
+# Package files
+package-lock.json
+*.lock
+
+# Other
+*.md
+.git
+.vscode
+

@@ -1,0 +1,618 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply box-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    @apply bg-bg-primary;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    @apply bg-bg-primary text-text-primary font-sans;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh;
+  }
+}
+
+@layer components {
+  /* Glass morphism effect */
+  .glass-card {
+    @apply bg-white/5 backdrop-blur-md border border-white/10 rounded-xl shadow-[0_8px_32px_rgba(0,0,0,0.37)];
+  }
+
+  /* Background gradient */
+  .background-gradient {
+    @apply fixed inset-0 -z-10 bg-gradient-to-br from-bg-primary via-bg-tertiary to-bg-primary;
+  }
+
+  /* Mana symbols */
+  .mana-symbol {
+    @apply w-[18px] h-[18px] rounded-full inline-flex items-center justify-center font-bold text-center text-black shadow-[0_2px_4px_rgba(0,0,0,0.4),inset_0_1px_2px_rgba(255,255,255,0.2)] border-[1.5px] border-black/30 bg-cover bg-center relative overflow-hidden;
+  }
+
+  .mana-w,
+  .mana-u,
+  .mana-b,
+  .mana-r,
+  .mana-g,
+  .mana-c {
+    @apply text-transparent;
+    text-indent: -9999px;
+    font-size: 0;
+  }
+
+  .mana-w {
+    background-image: url('../assets/W.svg');
+  }
+
+  .mana-u {
+    background-image: url('../assets/blueimage.svg');
+  }
+
+  .mana-b {
+    background-image: url('../assets/B.svg');
+  }
+
+  .mana-r {
+    background-image: url('../assets/R.svg');
+  }
+
+  .mana-g {
+    background-image: url('../assets/G.svg');
+  }
+
+  .mana-c {
+    background-image: url('../assets/C.svg');
+  }
+
+  /* Hybrid Mana Symbols - Color/Color */
+  .mana-bg,
+  .mana-gb {
+    background-image: url('../assets/BG.svg');
+    @apply text-transparent;
+    text-indent: -9999px;
+    font-size: 0;
+  }
+
+  .mana-br,
+  .mana-rb {
+    background-image: url('../assets/BR.svg');
+    @apply text-transparent;
+    text-indent: -9999px;
+    font-size: 0;
+  }
+
+  .mana-gu,
+  .mana-ug {
+    background-image: url('../assets/GU.svg');
+    @apply text-transparent;
+    text-indent: -9999px;
+    font-size: 0;
+  }
+
+  .mana-gw,
+  .mana-wg {
+    background-image: url('../assets/GW.svg');
+    @apply text-transparent;
+    text-indent: -9999px;
+    font-size: 0;
+  }
+
+  .mana-rw,
+  .mana-wr {
+    background-image: url('../assets/RW.svg');
+    @apply text-transparent;
+    text-indent: -9999px;
+    font-size: 0;
+  }
+
+  .mana-ub,
+  .mana-bu {
+    background-image: url('../assets/UB.svg');
+    @apply text-transparent;
+    text-indent: -9999px;
+    font-size: 0;
+  }
+
+  .mana-ur,
+  .mana-ru {
+    background-image: url('../assets/UR.svg');
+    @apply text-transparent;
+    text-indent: -9999px;
+    font-size: 0;
+  }
+
+  .mana-wb,
+  .mana-bw {
+    background-image: url('../assets/WB.svg');
+    @apply text-transparent;
+    text-indent: -9999px;
+    font-size: 0;
+  }
+
+  .mana-wu,
+  .mana-uw {
+    background-image: url('../assets/WU.svg');
+    @apply text-transparent;
+    text-indent: -9999px;
+    font-size: 0;
+  }
+
+  /* Hybrid with colorless (C/W, C/B, etc.) */
+  .mana-cb,
+  .mana-bc {
+    background-image: url('../assets/CB.svg');
+    @apply text-transparent;
+    text-indent: -9999px;
+    font-size: 0;
+  }
+
+  .mana-cg,
+  .mana-gc {
+    background-image: url('../assets/CG.svg');
+    @apply text-transparent;
+    text-indent: -9999px;
+    font-size: 0;
+  }
+
+  .mana-cr,
+  .mana-rc {
+    background-image: url('../assets/CR.svg');
+    @apply text-transparent;
+    text-indent: -9999px;
+    font-size: 0;
+  }
+
+  .mana-cu,
+  .mana-uc {
+    background-image: url('../assets/CU.svg');
+    @apply text-transparent;
+    text-indent: -9999px;
+    font-size: 0;
+  }
+
+  .mana-cw,
+  .mana-wc {
+    background-image: url('../assets/CW.svg');
+    @apply text-transparent;
+    text-indent: -9999px;
+    font-size: 0;
+  }
+
+  /* Hybrid with 2 (2/W, 2/U, etc.) */
+  .mana-2b,
+  .mana-b2 {
+    background-image: url('../assets/2B.svg');
+    @apply text-transparent;
+    text-indent: -9999px;
+    font-size: 0;
+  }
+
+  .mana-2g,
+  .mana-g2 {
+    background-image: url('../assets/2G.svg');
+    @apply text-transparent;
+    text-indent: -9999px;
+    font-size: 0;
+  }
+
+  .mana-2r,
+  .mana-r2 {
+    background-image: url('../assets/2R.svg');
+    @apply text-transparent;
+    text-indent: -9999px;
+    font-size: 0;
+  }
+
+  .mana-2u,
+  .mana-u2 {
+    background-image: url('../assets/2U.svg');
+    @apply text-transparent;
+    text-indent: -9999px;
+    font-size: 0;
+  }
+
+  .mana-2w,
+  .mana-w2 {
+    background-image: url('../assets/2W.svg');
+    @apply text-transparent;
+    text-indent: -9999px;
+    font-size: 0;
+  }
+
+  /* Phyrexian Mana (B/P, G/P, etc.) */
+  .mana-bp,
+  .mana-pb {
+    background-image: url('../assets/BP.svg');
+    @apply text-transparent;
+    text-indent: -9999px;
+    font-size: 0;
+  }
+
+  .mana-gp,
+  .mana-pg {
+    background-image: url('../assets/GP.svg');
+    @apply text-transparent;
+    text-indent: -9999px;
+    font-size: 0;
+  }
+
+  .mana-rp,
+  .mana-pr {
+    background-image: url('../assets/RP.svg');
+    @apply text-transparent;
+    text-indent: -9999px;
+    font-size: 0;
+  }
+
+  .mana-up,
+  .mana-pu {
+    background-image: url('../assets/UP.svg');
+    @apply text-transparent;
+    text-indent: -9999px;
+    font-size: 0;
+  }
+
+  .mana-wp,
+  .mana-pw {
+    background-image: url('../assets/WP.svg');
+    @apply text-transparent;
+    text-indent: -9999px;
+    font-size: 0;
+  }
+
+  /* Phyrexian Hybrid (B/G/P, B/R/P, etc.) */
+  .mana-bgp,
+  .mana-gbp {
+    background-image: url('../assets/BGP.svg');
+    @apply text-transparent;
+    text-indent: -9999px;
+    font-size: 0;
+  }
+
+  .mana-brp,
+  .mana-rbp {
+    background-image: url('../assets/BRP.svg');
+    @apply text-transparent;
+    text-indent: -9999px;
+    font-size: 0;
+  }
+
+  .mana-gup,
+  .mana-ugp {
+    background-image: url('../assets/GUP.svg');
+    @apply text-transparent;
+    text-indent: -9999px;
+    font-size: 0;
+  }
+
+  .mana-gwp,
+  .mana-wgp {
+    background-image: url('../assets/GWP.svg');
+    @apply text-transparent;
+    text-indent: -9999px;
+    font-size: 0;
+  }
+
+  .mana-rgp,
+  .mana-grp {
+    background-image: url('../assets/RGP.svg');
+    @apply text-transparent;
+    text-indent: -9999px;
+    font-size: 0;
+  }
+
+  .mana-rwp,
+  .mana-wrp {
+    background-image: url('../assets/RWP.svg');
+    @apply text-transparent;
+    text-indent: -9999px;
+    font-size: 0;
+  }
+
+  .mana-ubp,
+  .mana-bup {
+    background-image: url('../assets/UBP.svg');
+    @apply text-transparent;
+    text-indent: -9999px;
+    font-size: 0;
+  }
+
+  .mana-urp,
+  .mana-rup {
+    background-image: url('../assets/URP.svg');
+    @apply text-transparent;
+    text-indent: -9999px;
+    font-size: 0;
+  }
+
+  .mana-wbp,
+  .mana-bwp {
+    background-image: url('../assets/WBP.svg');
+    @apply text-transparent;
+    text-indent: -9999px;
+    font-size: 0;
+  }
+
+  .mana-wup,
+  .mana-uwp {
+    background-image: url('../assets/WUP.svg');
+    @apply text-transparent;
+    text-indent: -9999px;
+    font-size: 0;
+  }
+
+  /* Tap symbol */
+  .mana-tap,
+  .mana-t {
+    background-image: url('../assets/T.svg');
+    @apply text-transparent;
+    text-indent: -9999px;
+    font-size: 0;
+  }
+
+  .mana-untap,
+  .mana-q {
+    @apply bg-gradient-to-br from-[#cac5c0] to-[#b0aaa5] border-[#8a8580] text-[#333] text-[12px] font-bold;
+  }
+
+  /* Special symbols - Snow */
+  .mana-s {
+    background-image: url('../assets/S.svg');
+    @apply text-transparent;
+    text-indent: -9999px;
+    font-size: 0;
+  }
+
+  /* Energy symbol */
+  .mana-energy,
+  .mana-e {
+    @apply bg-gradient-to-br from-[#cac5c0] to-[#b0aaa5] border-[#8a8580] text-[#333] text-[10px] font-bold;
+  }
+
+  /* Variable mana - X */
+  .mana-x {
+    background-image: url('../assets/X.svg');
+    @apply text-transparent;
+    text-indent: -9999px;
+    font-size: 0;
+  }
+
+  /* Y and Z (no SVG files for these) */
+  .mana-y,
+  .mana-z {
+    @apply bg-gradient-to-br from-[#cac5c0] to-[#b0aaa5] border-[#8a8580] text-[#333] text-[10px] font-bold;
+  }
+
+  /* Generic/Colorless mana numbers with SVG files */
+  .mana-0 {
+    background-image: url('../assets/0.svg');
+    @apply text-transparent;
+    text-indent: -9999px;
+    font-size: 0;
+  }
+
+  .mana-1 {
+    background-image: url('../assets/1.svg');
+    @apply text-transparent;
+    text-indent: -9999px;
+    font-size: 0;
+  }
+
+  .mana-2 {
+    background-image: url('../assets/2.svg');
+    @apply text-transparent;
+    text-indent: -9999px;
+    font-size: 0;
+  }
+
+  .mana-3 {
+    background-image: url('../assets/3.svg');
+    @apply text-transparent;
+    text-indent: -9999px;
+    font-size: 0;
+  }
+
+  .mana-4 {
+    background-image: url('../assets/4.svg');
+    @apply text-transparent;
+    text-indent: -9999px;
+    font-size: 0;
+  }
+
+  .mana-5 {
+    background-image: url('../assets/5.svg');
+    @apply text-transparent;
+    text-indent: -9999px;
+    font-size: 0;
+  }
+
+  .mana-6 {
+    background-image: url('../assets/6.svg');
+    @apply text-transparent;
+    text-indent: -9999px;
+    font-size: 0;
+  }
+
+  .mana-7 {
+    background-image: url('../assets/7.svg');
+    @apply text-transparent;
+    text-indent: -9999px;
+    font-size: 0;
+  }
+
+  .mana-8 {
+    background-image: url('../assets/8.svg');
+    @apply text-transparent;
+    text-indent: -9999px;
+    font-size: 0;
+  }
+
+  .mana-9 {
+    background-image: url('../assets/9.svg');
+    @apply text-transparent;
+    text-indent: -9999px;
+    font-size: 0;
+  }
+
+  .mana-10 {
+    background-image: url('../assets/10.svg');
+    @apply text-transparent;
+    text-indent: -9999px;
+    font-size: 0;
+  }
+
+  .mana-11 {
+    background-image: url('../assets/11.svg');
+    @apply text-transparent;
+    text-indent: -9999px;
+    font-size: 0;
+  }
+
+  .mana-12 {
+    background-image: url('../assets/12.svg');
+    @apply text-transparent;
+    text-indent: -9999px;
+    font-size: 0;
+  }
+
+  .mana-13 {
+    background-image: url('../assets/13.svg');
+    @apply text-transparent;
+    text-indent: -9999px;
+    font-size: 0;
+  }
+
+  .mana-14 {
+    background-image: url('../assets/14.svg');
+    @apply text-transparent;
+    text-indent: -9999px;
+    font-size: 0;
+  }
+
+  .mana-15 {
+    background-image: url('../assets/15.svg');
+    @apply text-transparent;
+    text-indent: -9999px;
+    font-size: 0;
+  }
+
+  .mana-16 {
+    background-image: url('../assets/16.svg');
+    @apply text-transparent;
+    text-indent: -9999px;
+    font-size: 0;
+  }
+
+  .mana-17 {
+    background-image: url('../assets/17.svg');
+    @apply text-transparent;
+    text-indent: -9999px;
+    font-size: 0;
+  }
+
+  .mana-18 {
+    background-image: url('../assets/18.svg');
+    @apply text-transparent;
+    text-indent: -9999px;
+    font-size: 0;
+  }
+
+  .mana-19 {
+    background-image: url('../assets/19.svg');
+    @apply text-transparent;
+    text-indent: -9999px;
+    font-size: 0;
+  }
+
+  .mana-20 {
+    background-image: url('../assets/20.svg');
+    @apply text-transparent;
+    text-indent: -9999px;
+    font-size: 0;
+  }
+
+  /* Fallback for numbers beyond 20 */
+  .mana-generic {
+    @apply bg-gradient-to-br from-[#cac5c0] to-[#b0aaa5] border-[#8a8580] text-[#333] text-[10px] font-bold;
+  }
+}
+
+@layer utilities {
+  .fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+
+  /* Hide scrollbar for carousel */
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Thin scrollbar with theme colors */
+  .theme-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(59 130 246) transparent;
+  }
+
+  .theme-scrollbar::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .theme-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .theme-scrollbar::-webkit-scrollbar-thumb {
+    background: rgb(59 130 246);
+    border-radius: 4px;
+  }
+
+  .theme-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgb(139 92 246);
+  }
+
+  /* Custom select dropdown styling for dark theme */
+  select option {
+    @apply bg-bg-tertiary text-text-primary;
+    padding: 8px;
+  }
+
+  select option:hover,
+  select option:checked {
+    @apply bg-magic-blue text-white;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes loading {
+  0%,
+  100% {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(300%);
+  }
+}

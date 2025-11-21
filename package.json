@@ -1,0 +1,70 @@
+{
+  "name": "mtg-commander-builder",
+  "version": "1.0.0",
+  "description": "MTG Commander Deck Builder - A desktop app for building Magic: The Gathering Commander decks",
+  "author": "Your Name",
+  "type": "module",
+  "main": "dist-electron/main.js",
+  "scripts": {
+    "dev": "vite",
+    "start": "vite",
+    "build": "vite build && electron-builder",
+    "build:win": "vite build && electron-builder --win",
+    "build:mac": "vite build && electron-builder --mac",
+    "build:linux": "vite build && electron-builder --linux",
+    "preview": "vite preview",
+    "prettier": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json,css}\" \"electron/**/*.js\" \"*.{js,json}\"",
+    "prettier:check": "prettier --check \"src/**/*.{js,jsx,ts,tsx,json,css}\" \"electron/**/*.js\" \"*.{js,json}\""
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.43",
+    "@types/react-dom": "^18.2.17",
+    "@vitejs/plugin-react": "^4.2.1",
+    "autoprefixer": "^10.4.22",
+    "electron": "^39.2.3",
+    "electron-builder": "^26.0.12",
+    "postcss": "^8.5.6",
+    "prettier": "^3.6.2",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5.9.3",
+    "vite": "^5.0.8",
+    "vite-plugin-electron": "^0.29.0"
+  },
+  "build": {
+    "appId": "com.mtg.commander-builder",
+    "productName": "MTG Commander Builder",
+    "files": [
+      "dist/**/*",
+      "dist-electron/**/*"
+    ],
+    "directories": {
+      "output": "release/${version}"
+    },
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "icon": "assets/icon.ico",
+      "signAndEditExecutable": false
+    },
+    "mac": {
+      "target": [
+        "dmg"
+      ],
+      "icon": "assets/icon.icns"
+    },
+    "linux": {
+      "target": [
+        "AppImage"
+      ],
+      "icon": "assets/icon.png",
+      "category": "Game"
+    },
+    "electronDist": "node_modules/electron/dist",
+    "electronVersion": "39.2.3"
+  }
+}
