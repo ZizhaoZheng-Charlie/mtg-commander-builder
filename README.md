@@ -145,6 +145,117 @@ npm run build:linux
 
 The built application will be available in the `release/` directory.
 
+**Note:** On Windows, the build process automatically runs the deployment script to copy the app to your desktop and create a shortcut.
+
+## Electron Architecture
+
+This application uses Electron to package the React web app as a cross-platform desktop application.
+
+### Electron Structure
+
+- **Main Process** (`electron/main.js`) - Handles window creation, app lifecycle, and system integration
+- **Preload Script** (`electron/preload.js`) - Secure bridge between main process and renderer
+- **Renderer Process** - React application running in Electron's Chromium browser
+
+### Electron Configuration
+
+The Electron app is configured in `package.json` under the `build` section:
+
+- **App ID**: `com.mtg.commander-builder`
+- **Product Name**: `MTG Commander Builder`
+- **Windows**: Creates NSIS installer with custom icon
+- **macOS**: Creates DMG package with custom icon
+- **Linux**: Creates AppImage with custom icon
+
+### Electron Features
+
+- **Auto-updater Ready**: Configuration supports electron-updater for automatic updates
+- **Native Menus**: System tray and native OS menus
+- **File System Access**: Secure file system access for cache management
+- **Window Management**: Custom window controls and sizing
+- **Developer Tools**: Accessible via `Ctrl+Shift+I` (Windows/Linux) or `Cmd+Option+I` (macOS)
+
+## PowerShell Deployment Scripts
+
+The project includes PowerShell scripts for automated deployment on Windows.
+
+### Available Scripts
+
+#### `build-and-deploy.ps1`
+
+Complete build and deployment automation script that:
+1. Runs `npm run build` to build the application
+2. Automatically deploys to desktop using `deploy.ps1`
+3. Provides colored output and error handling
+
+**Usage:**
+```powershell
+.\build-and-deploy.ps1
+```
+
+#### `deploy.ps1`
+
+Deploys the built Electron app to your Windows desktop:
+1. Reads version from `package.json`
+2. Locates the built app in `release/{version}/win-unpacked/`
+3. Copies the app folder to your desktop
+4. Creates a desktop shortcut (`.lnk` file)
+5. Sets proper working directory for the shortcut
+
+**Usage:**
+```powershell
+# Deploy after building
+.\deploy.ps1
+
+# Or use the combined script
+.\build-and-deploy.ps1
+```
+
+**Requirements:**
+- Windows PowerShell 5.1 or later
+- Build must be completed first (`npm run build`)
+- App must exist in `release/{version}/win-unpacked/`
+
+### Deployment Process
+
+When you run the deployment script:
+
+1. **Version Detection**: Automatically reads the version from `package.json`
+2. **Path Resolution**: Finds the built app in `release/{version}/win-unpacked/`
+3. **Desktop Copy**: Copies the entire app folder to your desktop as "MTG Commander Builder"
+4. **Shortcut Creation**: Creates a desktop shortcut pointing to `MTG Commander Builder.exe`
+5. **Cleanup**: Removes old versions before deploying new ones
+
+**Output Locations:**
+- **App Folder**: `%USERPROFILE%\Desktop\MTG Commander Builder\`
+- **Shortcut**: `%USERPROFILE%\Desktop\MTG Commander Builder.lnk`
+
+### Script Features
+
+- ✅ **Error Handling**: Stops on errors with clear messages
+- ✅ **Version Management**: Automatically uses version from package.json
+- ✅ **Clean Deployment**: Removes old versions before deploying
+- ✅ **Colored Output**: Easy-to-read status messages
+- ✅ **Path Safety**: Uses proper path joining for cross-system compatibility
+
+### Troubleshooting
+
+**Script won't run:**
+```powershell
+# If you get execution policy errors, run:
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+```
+
+**Build not found:**
+- Ensure you've run `npm run build` first
+- Check that `release/{version}/win-unpacked/` exists
+- Verify the version in `package.json` matches the release folder
+
+**Shortcut not created:**
+- Check if you have write permissions to the desktop
+- Ensure Windows Script Host is enabled
+- Try running PowerShell as administrator
+
 ## Usage
 
 1. **Wait for Card Library** - First load takes 5-15 seconds to download. Subsequent loads are instant (1-3s) thanks to caching!
@@ -176,6 +287,11 @@ mtg-commander-builder/
 │   ├── main.jsx         # React entry point
 │   └── index.css        # Global styles
 ├── assets/              # Static assets (icons, images)
+├── release/             # Built application output
+│   └── {version}/       # Version-specific builds
+│       └── win-unpacked/ # Windows unpacked app
+├── build-and-deploy.ps1 # PowerShell script: build + deploy
+├── deploy.ps1           # PowerShell script: deploy to desktop
 ├── index.html           # HTML template
 ├── vite.config.js       # Vite configuration
 ├── package.json         # Project metadata and scripts
@@ -256,6 +372,9 @@ The desktop application runs on:
 - [x] Local card library with instant search
 - [x] Fuzzy, lexical, wildcard, and semantic search
 - [x] File-based card library caching with timestamps for faster reloads
+- [x] Electron desktop application
+- [x] PowerShell deployment scripts for Windows
+- [x] Copy deck list functionality
 - [ ] Export deck to text/PDF/JSON
 - [ ] Import deck from URL/text file
 - [ ] Mana curve visualization
@@ -267,6 +386,7 @@ The desktop application runs on:
 - [ ] Dark/light mode toggle
 - [ ] Advanced filtering (colors, types, CMC, rarity)
 - [ ] Regular expression search mode
+- [ ] Auto-updater for Electron app
 
 ## Credits
 
