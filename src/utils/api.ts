@@ -31,12 +31,21 @@ export function sanitizeCommanderName(name: string): string {
     .replace(/^-|-$/g, '');
 }
 
-export function sanitizeCardName(name: string): string {
-  // Extract front face name first (for double-faced cards)
-  // EDHREC uses only the front face name for card synergy data
-  const frontFaceName = extractFrontFaceName(name);
+export function sanitizeCardName(name: string, layout?: string): string {
+  // For split cards, keep the combined name (e.g., "Appeal // Authority")
+  // EDHREC uses the combined name format for split cards
+  let cardName = name;
 
-  return frontFaceName
+  if (layout === 'split') {
+    // Keep the full split card name with " // " separator
+    cardName = name.trim();
+  } else {
+    // Extract front face name for double-faced cards (transform, modal, etc.)
+    // EDHREC uses only the front face name for non-split cards
+    cardName = extractFrontFaceName(name);
+  }
+
+  return cardName
     .toLowerCase()
     .replace(/[^a-z0-9\s-]/g, '')
     .replace(/\s+/g, '-')
@@ -635,13 +644,15 @@ export async function searchCardInEDHREC(
  * Similar to commander synergy, but for individual cards
  * @param cardName - The name of the card
  * @param setLoading - Loading state setter function
+ * @param layout - Optional card layout (e.g., "split" for split cards)
  * @returns EDHREC data with synergy cards for this specific card
  */
 export async function getCardSynergyData(
   cardName: string,
-  setLoading?: (loading: boolean) => void
+  setLoading?: (loading: boolean) => void,
+  layout?: string
 ): Promise<EdhrecCommanderResults | null> {
-  const sanitized = sanitizeCardName(cardName);
+  const sanitized = sanitizeCardName(cardName, layout);
   const cacheKey = `${CACHE_KEYS.EDHREC}_card_${sanitized}`;
 
   console.log(`📊 Fetching card synergy data for: ${sanitized}`);
@@ -692,11 +703,13 @@ export async function getCardSynergyData(
  * Extracts synergy cards from card-specific EDHREC data
  * @param cardName - The name of the card
  * @param setLoading - Loading state setter function
+ * @param layout - Optional card layout (e.g., "split" for split cards)
  * @returns Array of cards that synergize with the given card
  */
 export async function getCardsAroundCard(
   cardName: string,
-  setLoading?: (loading: boolean) => void
+  setLoading?: (loading: boolean) => void,
+  layout?: string
 ): Promise<
   Array<{
     name: string;
@@ -711,7 +724,7 @@ export async function getCardsAroundCard(
   }>
 > {
   try {
-    const edhrecData = await getCardSynergyData(cardName, setLoading);
+    const edhrecData = await getCardSynergyData(cardName, setLoading, layout);
 
     if (!edhrecData || !edhrecData.container?.json_dict?.cardlists) {
       console.log('No synergy data available for card:', cardName);

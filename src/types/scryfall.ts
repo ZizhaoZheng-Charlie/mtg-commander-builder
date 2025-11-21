@@ -176,7 +176,7 @@ export interface ScryfallBulkData {
   uri: string;
   name: string;
   description: string;
-  compressed_size: number;
+  size: number;
   download_uri: string;
   content_type: string;
   content_encoding: string;

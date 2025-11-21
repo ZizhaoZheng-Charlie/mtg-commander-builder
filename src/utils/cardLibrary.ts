@@ -7,7 +7,7 @@ import { API } from './constants';
 import { cardLibraryCache } from './cardLibraryCache';
 import type {
   ScryfallCard,
-  ScryfallBulkDataList,
+  ScryfallBulkData,
   LibraryStats,
 } from '../types/scryfall';
 
@@ -24,11 +24,12 @@ class CardLibrary {
 
   /**
    * Fetch the bulk data download URI from Scryfall
+   * Directly fetches from the oracle_cards endpoint
    */
   async getBulkDataUri(): Promise<string> {
     try {
-      console.log('Fetching bulk data list from Scryfall...');
-      const response = await fetch(`${API.SCRYFALL}/bulk-data`, {
+      console.log('Fetching Oracle Cards bulk data from Scryfall...');
+      const response = await fetch(`${API.SCRYFALL}/bulk-data/oracle_cards`, {
         headers: {
           'User-Agent': API.USER_AGENT,
           Accept: 'application/json',
@@ -37,26 +38,24 @@ class CardLibrary {
 
       if (!response.ok) {
         throw new Error(
-          `Failed to fetch bulk data list: ${response.status} ${response.statusText}`
+          `Failed to fetch bulk data: ${response.status} ${response.statusText}`
         );
       }
 
-      const data: ScryfallBulkDataList = await response.json();
+      const data: ScryfallBulkData = await response.json();
 
-      // Find the "Oracle Cards" bulk data - this is the default/standard card data
-      const oracleCards = data.data.find(item => item.type === 'oracle_cards');
-
-      if (!oracleCards) {
-        throw new Error('Oracle cards bulk data not found');
+      if (!data.download_uri) {
+        throw new Error('Download URI not found in bulk data response');
       }
 
       console.log('Bulk data info:', {
-        size: `${(oracleCards.compressed_size / 1024 / 1024).toFixed(2)} MB`,
-        updated: oracleCards.updated_at,
-        name: oracleCards.name,
+        size: `${((data.size || 0) / 1024 / 1024).toFixed(2)} MB`,
+        updated: data.updated_at,
+        name: data.name,
+        download_uri: data.download_uri,
       });
 
-      return oracleCards.download_uri;
+      return data.download_uri;
     } catch (error) {
       console.error('Error fetching bulk data URI:', error);
       throw error;

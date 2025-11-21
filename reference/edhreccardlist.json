@@ -1,4 +1,5 @@
-{
+[
+  {
     "banned": false,
     "cardmarket_id": 834083,
     "cmc": 1,
@@ -16,9 +17,7 @@
     "legal_partner": false,
     "mana_cost": "{1}",
     "name": "Sol Ring",
-    "names": [
-      "Sol Ring"
-    ],
+    "names": ["Sol Ring"],
     "new": false,
     "oracle_id": "6ad8011d-3471-4369-9d68-b264cc027487",
     "oracle_text": "{T}: Add {C}{C}.",
@@ -70,9 +69,7 @@
     "rarity": "uncommon",
     "released_at": "1993-12-01",
     "salt": 1.46268656716418,
-    "tags": [
-      "ramp"
-    ],
+    "tags": ["ramp"],
     "type": "Artifact",
     "scryfall_uri": "https://scryfall.com/card/eoc/57/sol-ring?utm_source=api",
     "sets": [
@@ -126,9 +123,7 @@
     "spellbook_uri": "https://commanderspellbook.com/search/?q=Sol%20Ring",
     "spoiled_at": "1993-12-01",
     "subtypes": [],
-    "types": [
-      "Artifact"
-    ],
+    "types": ["Artifact"],
     "unique_artwork": [
       {
         "artist": "Mike Bierek",
@@ -585,4 +580,143 @@
     "unofficial": false,
     "url": "sol-ring",
     "weird": false
+  },
+  {
+    "object": "card",
+    "id": "1bc8966b-8c95-4e8e-993c-d536727599b7",
+    "oracle_id": "57ad3c3a-6ac7-4a35-bc07-00f6ea0988c5",
+    "multiverse_ids": [],
+    "arena_id": 94671,
+    "name": "Alive // Well",
+    "lang": "en",
+    "released_at": "2024-12-10",
+    "uri": "https://api.scryfall.com/cards/1bc8966b-8c95-4e8e-993c-d536727599b7",
+    "scryfall_uri": "https://scryfall.com/card/pio/384/alive-well?utm_source=api",
+    "layout": "split",
+    "highres_image": true,
+    "image_status": "highres_scan",
+    "image_uris": {
+      "small": "https://cards.scryfall.io/small/front/1/b/1bc8966b-8c95-4e8e-993c-d536727599b7.jpg?1733253101",
+      "normal": "https://cards.scryfall.io/normal/front/1/b/1bc8966b-8c95-4e8e-993c-d536727599b7.jpg?1733253101",
+      "large": "https://cards.scryfall.io/large/front/1/b/1bc8966b-8c95-4e8e-993c-d536727599b7.jpg?1733253101",
+      "png": "https://cards.scryfall.io/png/front/1/b/1bc8966b-8c95-4e8e-993c-d536727599b7.png?1733253101",
+      "art_crop": "https://cards.scryfall.io/art_crop/front/1/b/1bc8966b-8c95-4e8e-993c-d536727599b7.jpg?1733253101",
+      "border_crop": "https://cards.scryfall.io/border_crop/front/1/b/1bc8966b-8c95-4e8e-993c-d536727599b7.jpg?1733253101"
+    },
+    "mana_cost": "{3}{G} // {W}",
+    "cmc": 5,
+    "type_line": "Sorcery // Sorcery",
+    "colors": ["G", "W"],
+    "color_identity": ["G", "W"],
+    "keywords": ["Fuse"],
+    "card_faces": [
+      {
+        "object": "card_face",
+        "name": "Alive",
+        "mana_cost": "{3}{G}",
+        "type_line": "Sorcery",
+        "oracle_text": "Create a 3/3 green Centaur creature token.\nFuse (You may cast one or both halves of this card from your hand.)",
+        "artist": "Nils Hamm",
+        "artist_id": "c540d1fc-1500-457f-93cf-d6069ee66546",
+        "illustration_id": "0c8fd763-d266-4ac8-ab17-e729cf179e89"
+      },
+      {
+        "object": "card_face",
+        "name": "Well",
+        "mana_cost": "{W}",
+        "type_line": "Sorcery",
+        "oracle_text": "You gain 2 life for each creature you control.\nFuse (You may cast one or both halves of this card from your hand.)",
+        "artist": "Nils Hamm",
+        "artist_id": "c540d1fc-1500-457f-93cf-d6069ee66546"
+      }
+    ],
+    "all_parts": [
+      {
+        "object": "related_card",
+        "id": "1bc8966b-8c95-4e8e-993c-d536727599b7",
+        "component": "combo_piece",
+        "name": "Alive // Well",
+        "type_line": "Sorcery // Sorcery",
+        "uri": "https://api.scryfall.com/cards/1bc8966b-8c95-4e8e-993c-d536727599b7"
+      },
+      {
+        "object": "related_card",
+        "id": "5f657b65-67fc-4b7d-bc9e-840190f69362",
+        "component": "token",
+        "name": "Centaur",
+        "type_line": "Token Creature — Centaur",
+        "uri": "https://api.scryfall.com/cards/5f657b65-67fc-4b7d-bc9e-840190f69362"
+      }
+    ],
+    "legalities": {
+      "standard": "not_legal",
+      "future": "not_legal",
+      "historic": "legal",
+      "timeless": "legal",
+      "gladiator": "legal",
+      "pioneer": "legal",
+      "modern": "legal",
+      "legacy": "legal",
+      "pauper": "not_legal",
+      "vintage": "legal",
+      "penny": "legal",
+      "commander": "legal",
+      "oathbreaker": "legal",
+      "standardbrawl": "not_legal",
+      "brawl": "legal",
+      "alchemy": "not_legal",
+      "paupercommander": "not_legal",
+      "duel": "legal",
+      "oldschool": "not_legal",
+      "premodern": "not_legal",
+      "predh": "not_legal"
+    },
+    "games": ["arena"],
+    "reserved": false,
+    "game_changer": false,
+    "foil": false,
+    "nonfoil": true,
+    "finishes": ["nonfoil"],
+    "oversized": false,
+    "promo": false,
+    "reprint": true,
+    "variation": false,
+    "set_id": "713c226b-d4d9-46e1-b9c9-a04689d90ff6",
+    "set": "pio",
+    "set_name": "Pioneer Masters",
+    "set_type": "masters",
+    "set_uri": "https://api.scryfall.com/sets/713c226b-d4d9-46e1-b9c9-a04689d90ff6",
+    "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Apio&unique=prints",
+    "scryfall_set_uri": "https://scryfall.com/sets/pio?utm_source=api",
+    "rulings_uri": "https://api.scryfall.com/cards/1bc8966b-8c95-4e8e-993c-d536727599b7/rulings",
+    "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A57ad3c3a-6ac7-4a35-bc07-00f6ea0988c5&unique=prints",
+    "collector_number": "384",
+    "digital": true,
+    "rarity": "uncommon",
+    "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+    "artist": "Nils Hamm",
+    "artist_ids": ["c540d1fc-1500-457f-93cf-d6069ee66546"],
+    "illustration_id": "0c8fd763-d266-4ac8-ab17-e729cf179e89",
+    "border_color": "black",
+    "frame": "2015",
+    "full_art": false,
+    "textless": false,
+    "booster": false,
+    "story_spotlight": false,
+    "edhrec_rank": 19905,
+    "penny_rank": 10446,
+    "prices": {
+      "usd": null,
+      "usd_foil": null,
+      "usd_etched": null,
+      "eur": null,
+      "eur_foil": null,
+      "tix": null
+    },
+    "related_uris": {
+      "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DAlive%2B%252F%252F%2BWell",
+      "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DAlive%2B%252F%252F%2BWell",
+      "edhrec": "https://edhrec.com/route/?cc=Alive+%2F%2F+Well"
+    }
   }
+]

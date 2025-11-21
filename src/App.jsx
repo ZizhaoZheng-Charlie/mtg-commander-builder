@@ -295,6 +295,7 @@ function App() {
                   cards={synergyCards}
                   onAddToDeck={handleAddToDeck}
                   onCardClick={handleCardClick}
+                  deck={deck}
                 />
               )}
             </div>
@@ -305,6 +306,7 @@ function App() {
                   cards={topCards}
                   onAddToDeck={handleAddToDeck}
                   onCardClick={handleCardClick}
+                  deck={deck}
                 />
               )}
             </div>
@@ -325,6 +327,7 @@ function App() {
           setLoading={setLoading}
           commander={selectedCommander}
           secondCommander={secondCommander}
+          deck={deck}
         />
       </main>
 

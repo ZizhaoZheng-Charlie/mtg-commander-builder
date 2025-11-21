@@ -1,13 +1,45 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, useMemo } from 'react';
 import { cardLibrary } from '../utils/cardLibrary';
 
-function SynergyCards({ cards, onAddToDeck, onCardClick }) {
+function SynergyCards({ cards, onAddToDeck, onCardClick, deck = [] }) {
   const scrollContainerRef = useRef(null);
   const [hoveredCard, setHoveredCard] = useState(null);
   const [hoveredCardData, setHoveredCardData] = useState(null);
   const [hoverPosition, setHoverPosition] = useState({ x: 0, y: 0 });
 
-  if (!cards || cards.length === 0) return null;
+  // Helper function to check if a card allows multiple copies in deck
+  const allowsMultipleCopies = card => {
+    const oracleText =
+      card.oracle_text ||
+      (card.card_faces && card.card_faces[0]?.oracle_text) ||
+      '';
+    return oracleText
+      .toLowerCase()
+      .includes('a deck can have any number of cards named');
+  };
+
+  // Helper function to check if a card is already in the deck (excluding commanders)
+  const isCardInDeck = useMemo(() => {
+    const deckCardIds = new Set(
+      deck.filter(card => !card.isCommander).map(card => card.id)
+    );
+    return cardId => deckCardIds.has(cardId);
+  }, [deck]);
+
+  // Filter out cards that are already in the deck (unless they allow multiple copies)
+  const filteredCards = useMemo(() => {
+    if (!cards || cards.length === 0) return [];
+    return cards.filter(card => {
+      // If card allows multiple copies, always show it
+      if (allowsMultipleCopies(card)) {
+        return true;
+      }
+      // Otherwise, filter out if already in deck
+      return !isCardInDeck(card.id);
+    });
+  }, [cards, isCardInDeck]);
+
+  if (!filteredCards || filteredCards.length === 0) return null;
 
   const scroll = direction => {
     if (scrollContainerRef.current) {
@@ -84,8 +116,8 @@ function SynergyCards({ cards, onAddToDeck, onCardClick }) {
               High Synergy Cards
             </h2>
             <p className="text-text-secondary text-sm mt-1">
-              {cards.length} cards that work exceptionally well with your
-              commander
+              {filteredCards.length} cards that work exceptionally well with
+              your commander
             </p>
           </div>
 
@@ -111,7 +143,7 @@ function SynergyCards({ cards, onAddToDeck, onCardClick }) {
           ref={scrollContainerRef}
           className="flex gap-4 overflow-x-auto scroll-smooth pb-4 hide-scrollbar"
         >
-          {cards.map((card, index) => {
+          {filteredCards.map((card, index) => {
             const synergyPercentage = card.synergy
               ? Math.round(card.synergy * 100)
               : null;

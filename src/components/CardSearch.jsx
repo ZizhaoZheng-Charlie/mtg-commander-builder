@@ -7,9 +7,41 @@ function CardSearch({
   setLoading,
   commander,
   secondCommander,
+  deck = [],
 }) {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState([]);
+
+  // Helper function to check if a card allows multiple copies in deck
+  const allowsMultipleCopies = card => {
+    const oracleText =
+      card.oracle_text ||
+      (card.card_faces && card.card_faces[0]?.oracle_text) ||
+      '';
+    return oracleText
+      .toLowerCase()
+      .includes('a deck can have any number of cards named');
+  };
+
+  // Helper function to check if a card is already in the deck (excluding commanders)
+  const isCardInDeck = useMemo(() => {
+    const deckCardIds = new Set(
+      deck.filter(card => !card.isCommander).map(card => card.id)
+    );
+    return cardId => deckCardIds.has(cardId);
+  }, [deck]);
+
+  // Filter out cards that are already in the deck (unless they allow multiple copies)
+  const filteredResults = useMemo(() => {
+    return results.filter(card => {
+      // If card allows multiple copies, always show it
+      if (allowsMultipleCopies(card)) {
+        return true;
+      }
+      // Otherwise, filter out if already in deck
+      return !isCardInDeck(card.id);
+    });
+  }, [results, isCardInDeck]);
 
   // Combine color identities from both commanders
   const combinedColorIdentity = useMemo(() => {
@@ -107,9 +139,9 @@ function CardSearch({
           Search
         </button>
       </div>
-      {results.length > 0 && (
+      {filteredResults.length > 0 && (
         <div className="grid grid-cols-[repeat(auto-fill,minmax(200px,1fr))] gap-6">
-          {results.map(card => {
+          {filteredResults.map(card => {
             const imageUri =
               card.image_uris?.normal ||
               (card.card_faces && card.card_faces[0]?.image_uris?.normal) ||

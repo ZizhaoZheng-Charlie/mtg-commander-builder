@@ -1,10 +1,6 @@
-import { useEffect, useState, useCallback, useRef } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { parseManaSymbols, parseOracleText } from '../utils/manaSymbols';
-import {
-  findCardCategories,
-  getCardsAroundCard,
-  extractFrontFaceName,
-} from '../utils/api';
+import { findCardCategories, getCardsAroundCard } from '../utils/api';
 import { cardLibrary } from '../utils/cardLibrary';
 
 function CardModal({
@@ -25,8 +21,6 @@ function CardModal({
   const [hoveredCard, setHoveredCard] = useState(null);
   const [hoveredCardData, setHoveredCardData] = useState(null);
   const [hoverPosition, setHoverPosition] = useState({ x: 0, y: 0 });
-  const [selectedFaceIndex, setSelectedFaceIndex] = useState(0);
-  const previousCardIdRef = useRef(null);
 
   useEffect(() => {
     const handleEscape = e => {
@@ -54,13 +48,15 @@ function CardModal({
     setShowSynergies(true);
 
     try {
-      // Extract front face name for double-faced cards (EDHREC uses front face only)
-      const cardNameForQuery =
-        card.card_faces?.[0]?.name || extractFrontFaceName(card.name);
-      const synergies = await getCardsAroundCard(cardNameForQuery);
+      // For split cards, pass the layout so EDHREC search uses combined name
+      const synergies = await getCardsAroundCard(
+        card.name,
+        undefined,
+        card.layout
+      );
       setCardSynergyData(synergies);
       console.log(
-        `Found ${synergies.length} cards that synergize with ${cardNameForQuery}`
+        `Found ${synergies.length} cards that synergize with ${card.name} (layout: ${card.layout})`
       );
       setLoadingSynergy(false);
     } catch (error) {
@@ -71,16 +67,10 @@ function CardModal({
 
   // Reset synergy data when card changes and auto-fetch (only for non-commander modals)
   useEffect(() => {
-    // Only reset face selection if the card ID actually changed
-    const currentCardId = card?.id;
-    if (previousCardIdRef.current !== currentCardId) {
-      setCardSynergyData([]);
-      setShowSynergies(false);
-      setLoadingSynergy(false);
-      setExpandedCategories({});
-      setSelectedFaceIndex(0); // Reset face selection when card changes
-      previousCardIdRef.current = currentCardId;
-    }
+    setCardSynergyData([]);
+    setShowSynergies(false);
+    setLoadingSynergy(false);
+    setExpandedCategories({});
 
     // Auto-fetch synergy data when card is opened (skip for commander modals)
     if (card && !isCommanderModal) {
@@ -95,28 +85,12 @@ function CardModal({
 
   if (!card) return null;
 
-  // Check if this is a double-faced card (DFC) - any card with multiple card_faces
-  // Includes: modal_dfc, transform, flip, meld, double_sided, etc.
-  const isDFC = card.card_faces && card.card_faces.length > 1;
-  const currentFace = isDFC ? card.card_faces[selectedFaceIndex] : null;
-
-  // Get image URI - use current face for DFC, otherwise use card's image
-  const imageUri = isDFC
-    ? currentFace?.image_uris?.large || currentFace?.image_uris?.normal || ''
-    : card.image_uris?.large ||
-      card.image_uris?.normal ||
-      (card.card_faces && card.card_faces[0]?.image_uris?.large) ||
-      (card.card_faces && card.card_faces[0]?.image_uris?.normal) ||
-      '';
-
-  // Get display data - use current face for DFC, otherwise use card data
-  const displayName = isDFC ? currentFace?.name || card.name : card.name;
-  const displayManaCost = isDFC ? currentFace?.mana_cost : card.mana_cost;
-  const displayTypeLine = isDFC ? currentFace?.type_line : card.type_line;
-  const displayOracleText = isDFC ? currentFace?.oracle_text : card.oracle_text;
-  const displayPower = isDFC ? currentFace?.power : card.power;
-  const displayToughness = isDFC ? currentFace?.toughness : card.toughness;
-  const displayLoyalty = isDFC ? currentFace?.loyalty : card.loyalty;
+  const imageUri =
+    card.image_uris?.large ||
+    card.image_uris?.normal ||
+    (card.card_faces && card.card_faces[0]?.image_uris?.large) ||
+    (card.card_faces && card.card_faces[0]?.image_uris?.normal) ||
+    '';
 
   // Find card categories in EDHREC data (from commander context)
   const cardCategories = edhrecData
@@ -256,63 +230,31 @@ function CardModal({
             <div className="w-full md:sticky top-6 max-w-[300px] mx-auto md:mx-0">
               <img
                 src={imageUri}
-                alt={displayName}
+                alt={card.name}
                 className="w-full rounded-lg shadow-[0_10px_40px_rgba(0,0,0,0.5)] block"
               />
-              {/* Face toggle for double-faced cards */}
-              {isDFC && card.card_faces.length > 1 && (
-                <div className="mt-4 flex gap-2 justify-center">
-                  {card.card_faces.map((face, index) => (
-                    <button
-                      key={index}
-                      onClick={e => {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        setSelectedFaceIndex(index);
-                      }}
-                      className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all ${
-                        selectedFaceIndex === index
-                          ? 'bg-gradient-to-r from-magic-blue to-magic-purple text-white shadow-lg'
-                          : 'bg-white/10 border border-white/20 text-text-primary hover:bg-white/20'
-                      }`}
-                      title={face.name}
-                    >
-                      {index === 0 ? 'Front' : 'Back'}
-                    </button>
-                  ))}
-                </div>
-              )}
             </div>
           )}
 
           <div className="flex flex-col gap-4 min-w-0">
             {/* Card Info */}
             <div className="flex flex-col gap-2 mb-2">
-              <div className="flex items-center gap-3 flex-wrap">
-                <h2 className="text-3xl font-bold m-0 bg-gradient-to-r from-magic-blue to-magic-purple bg-clip-text text-transparent leading-tight">
-                  {displayName}
-                </h2>
-                {isDFC && (
-                  <span className="text-sm text-text-secondary bg-white/10 px-2 py-1 rounded">
-                    {selectedFaceIndex === 0 ? 'Front' : 'Back'} Face
-                  </span>
-                )}
-              </div>
-              {displayManaCost && (
-                <div
-                  className="flex gap-1 items-center flex-wrap"
-                  dangerouslySetInnerHTML={{
-                    __html: parseManaSymbols(displayManaCost) || '',
-                  }}
-                />
-              )}
+              <h2 className="text-3xl font-bold m-0 bg-gradient-to-r from-magic-blue to-magic-purple bg-clip-text text-transparent leading-tight">
+                {card.name}
+              </h2>
+              <div
+                className="flex gap-1 items-center flex-wrap"
+                dangerouslySetInnerHTML={{
+                  __html: parseManaSymbols(card.mana_cost) || '',
+                }}
+              />
             </div>
             <p className="text-lg font-medium text-text-secondary m-0">
-              {displayTypeLine || 'Unknown'}
+              {card.type_line || 'Unknown'}
             </p>
-            {displayOracleText && (
+            {card.oracle_text && (
               <div className="text-base leading-[1.8] text-text-primary">
-                {displayOracleText.split('\n').map((line, i) => (
+                {card.oracle_text.split('\n').map((line, i) => (
                   <p
                     key={i}
                     className="my-3 first:mt-0 last:mb-0"
@@ -323,14 +265,14 @@ function CardModal({
                 ))}
               </div>
             )}
-            {displayPower && displayToughness && (
+            {card.power && card.toughness && (
               <div className="bg-magic-blue/20 px-4 py-1 rounded-md text-lg font-bold text-magic-blue inline-block mt-2">
-                {displayPower}/{displayToughness}
+                {card.power}/{card.toughness}
               </div>
             )}
-            {displayLoyalty && (
+            {card.loyalty && (
               <div className="bg-magic-purple/20 px-4 py-1 rounded-md text-lg font-bold text-magic-purple inline-block mt-2">
-                Loyalty: {displayLoyalty}
+                Loyalty: {card.loyalty}
               </div>
             )}
 
